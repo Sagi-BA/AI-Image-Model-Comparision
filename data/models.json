@@ -11,14 +11,14 @@
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
       "title": "Flux.1 (Grok)",
-      "name": "Flux.1 (Grok)",
+      "name": "flux",
       "media_type": "image"
     },
     {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
       "title": "Turbo",
-      "name": "Turbo",
+      "name": "turbo",
       "media_type": "image"
     },
     {
