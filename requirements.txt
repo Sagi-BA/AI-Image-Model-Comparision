@@ -1,0 +1,16 @@
+streamlit 
+jinja2
+pillow
+python-dotenv
+gradio_client
+# diffusers #for StableDiffusionPipeline
+# torch #for StableDiffusionPipeline
+# transformers #for StableDiffusionPipeline
+# accelerate #for StableDiffusionPipeline
+
+
+
+# reportlab
+# aiohttp #for telegram
+
+

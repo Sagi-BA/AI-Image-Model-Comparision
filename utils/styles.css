@@ -1,0 +1,105 @@
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+.stApp > header {
+  background-color: #f0f2f6;
+  padding: 1rem;
+}
+
+.stApp > footer {
+  background-color: #f0f2f6;
+  padding: 1rem;
+  text-align: center;
+}
+
+.main .block-container {
+  max-width: 1200px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.stButton > button {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+.row-widget.stRadio > div {
+  flex-direction: row-reverse;
+}
+
+.stCheckbox > label {
+  direction: ltr;
+}
+
+/* Title styling */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .main .block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .row-widget.stRadio > div {
+    flex-direction: column;
+  }
+
+  /* Increase button size on mobile for better touch targets */
+  .stButton > button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  /* Adjust title size for mobile */
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Further adjustments for very small screens */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Ensure images don't overflow their containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Custom styles for layout */
+.stApp {
+  font-family: "Arial", sans-serif;
+}
+
+/* Improve file uploader appearance */
+.stFileUploader > div:first-child {
+  width: 100%;
+}
+
+.stFileUploader > div:first-child > div {
+  width: 100%;
+}

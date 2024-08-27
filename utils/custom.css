@@ -1,0 +1,120 @@
+/* Custom CSS for prettier design */
+
+/* Import a nice font */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
+
+/* Global styles */
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: #f0f4f8;
+  color: #1a202c;
+}
+
+.stApp {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header styles */
+h1 {
+  color: #2c5282;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Button styles */
+.stButton > button {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.stButton > button:hover {
+  background-color: #2b6cb0;
+}
+
+/* File uploader styles */
+.stFileUploader > div:first-child {
+  border: 2px dashed #4299e1;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+/* Image grid styles */
+.stImage {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stImage:hover {
+  transform: scale(1.05);
+}
+
+/* Footer styles */
+footer {
+  text-align: right;
+  direction: rtl;
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+footer h2 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+footer h3 {
+  color: #34495e;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+footer p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section {
+  margin-bottom: 1.5rem;
+}
+
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.footer-badges a {
+  transition: transform 0.2s ease-in-out;
+}
+
+.footer-badges a:hover {
+  transform: translateY(-2px);
+}
+
+footer hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.creator-info {
+  font-style: italic;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .footer-badges {
+    justify-content: center;
+  }
+}
