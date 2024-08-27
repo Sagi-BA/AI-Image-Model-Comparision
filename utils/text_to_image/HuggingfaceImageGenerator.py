@@ -17,32 +17,40 @@ class HuggingfaceImageGenerator:
             raise ValueError("Hugging Face token must be set in environment variables")
         if not self.HF_URL:
             raise ValueError("Hugging Face URL must be set in environment variables")
-    
+        
+        self.uploader = ImgurUploader()
+
     @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
     def generate_image(self, prompt, model_name):
         url = self.HF_URL + model_name        
         headers = {"Authorization": f"Bearer {self.HF_TOKEN}"}
     
         try:
-            print(f"Attempting to connect to {model_name} model with prompt: {prompt}")
-            print(url)
-            payload = {"inputs": f"{prompt}"}
+            print(f"Attempting to connect to model '{model_name}' at URL: {url}")            
+            payload = {"inputs": prompt}
             response = requests.post(url, headers=headers, json=payload)
-            
+
+            # Debugging: print response details
+            print(f"Response Status Code: {response.status_code}")
+            print(f"Response Headers: {response.headers}")
+            print(f"Response Content: {response.content[:100]}...")  # print first 100 bytes for brevity
+
+            if response.status_code != 200:
+                print(f"Error: Non-200 response received: {response.status_code}")
+                return None
+
             image_bytes = response.content
             image_base64 = base64.b64encode(image_bytes).decode('utf-8')
-            
-            uploader = ImgurUploader()
-            image_url = uploader.upload_media_to_imgur(
+
+            print(f"Image Base64 (truncated): {image_base64[:100]}...")  # print first 100 chars for brevity
+
+            image_url = self.uploader.upload_media_to_imgur(
                 image_base64, 
                 "image",
                 model_name,  # Title
                 prompt  # Description
             )
-            if image_url:
-                return image_url
-            else:
-                return None
+            return image_url
         except Exception as e:
             print(f"Error generating image: {e}")
             return None

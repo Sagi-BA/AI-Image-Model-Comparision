@@ -1,55 +1,6 @@
 {
   "models": [
     {
-      "generation_app": "stabilityai/stable-diffusion-xl-base-1.0",
-      "link": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
-      "title": "Stable Diffusion XL 1.0-base Model Card",
-      "name": "Stable Diffusion XL 1.0-base Model Card",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "runwayml/stable-diffusion-v1-5",
-      "link": "https://huggingface.co/runwayml/stable-diffusion-v1-5",
-      "title": "Stable Diffusion v1-5 Model Card",
-      "name": "Stable Diffusion v1-5 Model Card",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "ByteDance/Hyper-SD",
-      "link": "https://huggingface.co/ByteDance/Hyper-SD",
-      "title": "Hyper-SD",
-      "name": "Hyper-SD",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "multimodalart/flux-tarot-v1",
-      "link": "https://huggingface.co/multimodalart/flux-tarot-v1",
-      "title": "Flux Tarot v1",
-      "name": "Flux Tarot v1",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "XLabs-AI/flux-RealismLora",
-      "link": "https://huggingface.co/XLabs-AI/flux-RealismLora",
-      "title": "Flux RealismLora",
-      "name": "Flux RealismLora",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "black-forest-labs/FLUX.1-dev",
-      "link": "https://huggingface.co/XLabs-AI/flux-ip-adapter",
-      "title": "FLUX.1-dev",
-      "name": "FLUX.1-dev",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "black-forest-labs/FLUX.1-schnell",
-      "link": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
-      "title": "FLUX.1-schnell",
-      "name": "FLUX.1-schnell",
-      "media_type": "image"
-    },
-    {
       "generation_app": "alvdansen/flux-koda",
       "link": "https://huggingface.co/alvdansen/flux-koda",
       "title": "Koda Diffusion (Flux)",
@@ -68,13 +19,6 @@
       "link": "https://pollinations.ai/",
       "title": "Turbo",
       "name": "Turbo",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "sdxl_lightning",
-      "link": "https://huggingface.co/ByteDance/SDXL-Lightning",
-      "title": "SDXL-Lightning",
-      "name": "SDXL-Lightning",
       "media_type": "image"
     },
     {

@@ -34,6 +34,7 @@ class ImgurUploader:
         :param description: Description for the media.
         :return: URL of the uploaded media, or a placeholder if upload fails.
         """
+        
         payload = {
             'type': 'base64',
             'title': title,
@@ -45,6 +46,7 @@ class ImgurUploader:
         return self._execute_with_retry("https://api.imgur.com/3/upload", payload)
 
     def _execute_with_retry(self, url: str, payload: dict) -> str:
+        # print(payload)
         for attempt in range(self.max_retries):
             try:
                 response = self.session.post(url, data=payload, timeout=self.timeout)

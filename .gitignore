@@ -1,8 +1,10 @@
 *.code-workspace
 .env
-
+.output
 # Ignore all __pycache__ directories
 **/__pycache__/
 # data/user_count.json
 .devcontainer
 main copy.py
+hugging.py
+data/models copy.json

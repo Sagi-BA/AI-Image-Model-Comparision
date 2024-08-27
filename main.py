@@ -7,6 +7,7 @@ import base64
 from io import BytesIO
 import os
 from dotenv import load_dotenv
+import random
 
 # from utils.text_to_image.HuggingfaceImageGenerator import HuggingfaceImageGenerator
 
@@ -40,6 +41,16 @@ def get_file_type_from_url(url):
     else:
         return 'unknown'
 
+def add_random_spaces(prompt):
+    words = list(prompt)
+    num_spaces = random.randint(1, 100)
+    
+    for _ in range(num_spaces):
+        position = random.randint(0, len(words))
+        words.insert(position, ' ')
+    
+    return ''.join(words)
+
 def generate_image(prompt, model_name):    
     HF_TOKEN = os.getenv("HF_TOKEN")
     HF_URL = os.getenv("HF_URL")    
@@ -49,13 +60,16 @@ def generate_image(prompt, model_name):
     if not HF_URL:
         raise ValueError("Hugging Face URL must be set in environment variables")
     
+    # Add random spaces to the prompt
+    prompt_with_spaces = add_random_spaces(prompt)
+
     url = HF_URL + model_name        
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}    
 
     try:
-        print(f"Attempting to connect to {model_name} model with prompt: {prompt}")
+        print(f"Attempting to connect to {model_name}:")
         print(url)
-        payload = ({"inputs": f"{prompt}"})
+        payload = ({"inputs": f"{prompt_with_spaces}"})
         response = requests.post(url, headers=headers, json=payload)
         
         image_bytes = response.content
@@ -80,19 +94,16 @@ def generate_media(prompt, model):
     try:
         if model['generation_app'] == 'pollinations':
             pollinations_generator = PollinationsGenerator()
-            image_url= pollinations_generator.generate_image(prompt, model['name'])
-        # elif model['generation_app'] == 'flux_koda':
-        #     flux_koda = FluxKodanGenerator()
-        #     return flux_koda.generate_image(prompt)
+            image_url= pollinations_generator.generate_image(prompt, model['name'])        
         elif model['generation_app'] == 'hand_drawn_cartoon_style':
             hand_drawn_cartoon_generator = HandDrawnCartoonGenerator()
             image_url= hand_drawn_cartoon_generator.generate_image(prompt)
         elif model['generation_app'] == 'animatediff_lightning':
             animatediff_lightning_generator = AnimateDiffLightningGenerator()
             image_url= animatediff_lightning_generator.generate_image(prompt)        
-        elif model['generation_app'] == 'sdxl_lightning':
-            sdxl_lightning_generator = SDXLLightningGenerator()
-            return sdxl_lightning_generator.generate_image(prompt)
+        # elif model['generation_app'] == 'sdxl_lightning':
+        #     sdxl_lightning_generator = SDXLLightningGenerator()
+        #     return sdxl_lightning_generator.generate_image(prompt)
         else:
             print(f"Image generation for {model['generation_app']} is not implemented")            
             image_url = generate_image(prompt, model['generation_app'])
