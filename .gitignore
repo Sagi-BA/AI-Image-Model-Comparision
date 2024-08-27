@@ -1,8 +1,8 @@
 *.code-workspace
 .env
-main copy.py
 
 # Ignore all __pycache__ directories
 **/__pycache__/
 # data/user_count.json
 .devcontainer
+main copy.py
