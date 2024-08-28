@@ -17,7 +17,7 @@ def get_user_count(formatted=False):
         with open(USER_COUNT_FILE, 'r') as f:
             data = json.load(f)
         count = data.get("count", 0)
-        if formatted:
+        if formatted:            
             return format_count(count)
         return count
     except (json.JSONDecodeError, FileNotFoundError):
@@ -25,12 +25,14 @@ def get_user_count(formatted=False):
 
 def increment_user_count():
     count = get_user_count()
-    count += 1
+    count += 1    
     with open(USER_COUNT_FILE, 'w') as f:
         json.dump({"count": count}, f)
     return count
 
 def decrement_user_count():
+    print("Decrementing user count")
+    
     count = get_user_count()
     count = max(0, count - 1)  # Ensure count doesn't go below 0
     with open(USER_COUNT_FILE, 'w') as f:
@@ -38,24 +40,7 @@ def decrement_user_count():
     return count
 
 def format_count(count):
-    """Format the count with commas and round to nearest thousand if over 1000"""
+    """Format the count with commas and round to nearest thousand if over 1000"""    
     if count >= 1000:
         return f"{count:,}"
     return f"{count:,}"
-
-# CSS for the user count
-USER_COUNT_CSS = """
-<style>
-.user-count {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: #4a4a4a;
-}
-
-@media screen and (max-width: 768px) {
-    .user-count {
-        font-size: 0.9rem;
-    }
-}
-</style>
-"""

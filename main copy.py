@@ -1,4 +1,5 @@
-# sagi
+import requests
+import asyncio
 import streamlit as st
 from urllib.parse import urlparse
 import json
@@ -6,13 +7,27 @@ from jinja2 import Template
 import base64
 from io import BytesIO
 import os
+from dotenv import load_dotenv
+import random
 
-from utils.text_to_image.HuggingfaceImageGenerator import HuggingfaceImageGenerator
+
+# Initialize components
+from utils.init import initialize
+from utils.counter import initialize_user_count, increment_user_count, get_user_count
+from utils.TelegramSender import TelegramSender
 
 from utils.text_to_image.pollinations_generator import PollinationsGenerator
-from utils.text_to_image.sdxl_lightning_generator import SDXLLightningGenerator
+# from utils.text_to_image.sdxl_lightning_generator import SDXLLightningGenerator
 from utils.text_to_image.hand_drawn_cartoon_generator import HandDrawnCartoonGenerator
 from utils.text_to_video.animatediff_lightning_generator import AnimateDiffLightningGenerator
+from utils.imgur_uploader import ImgurUploader
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Set page config for better mobile responsiveness
+# Set page config at the very beginning
+st.set_page_config(layout="wide", initial_sidebar_state="collapsed", page_title="מחולל תמונות AI", page_icon="📷")
 
 # Read the HTML template
 with open("template.html", "r") as file:
@@ -35,14 +50,60 @@ def get_file_type_from_url(url):
     else:
         return 'unknown'
 
+def add_random_spaces(prompt):
+    words = list(prompt)
+    num_spaces = random.randint(1, 100)
+    
+    for _ in range(num_spaces):
+        position = random.randint(0, len(words))
+        words.insert(position, ' ')
+    
+    return ''.join(words)
+
+def generate_image(prompt, model_name):    
+    HF_TOKEN = os.getenv("HF_TOKEN")
+    HF_URL = os.getenv("HF_URL")    
+
+    if not HF_TOKEN:
+        raise ValueError("Hugging Face token must be set in environment variables")
+    if not HF_URL:
+        raise ValueError("Hugging Face URL must be set in environment variables")
+    
+    # Add random spaces to the prompt
+    prompt_with_spaces = add_random_spaces(prompt)
+
+    url = HF_URL + model_name        
+    headers = {"Authorization": f"Bearer {HF_TOKEN}"}    
+
+    try:
+        print(f"Attempting to connect to {model_name}:")
+        print(url)
+        payload = ({"inputs": f"{prompt_with_spaces}"})
+        response = requests.post(url, headers=headers, json=payload)
+        
+        image_bytes = response.content
+        image_base64 = base64.b64encode(image_bytes).decode('utf-8')
+        
+        uploader = ImgurUploader()
+        image_url = uploader.upload_media_to_imgur(
+            image_base64, 
+            "image",
+            model_name,  # Title
+            prompt  # Description
+        )
+        if image_url:
+            return image_url
+        else:
+            return None
+    except Exception as e:
+        print(f"Error generating image: {e}")
+        return None
+    
 def generate_media(prompt, model):
     try:
         if model['generation_app'] == 'pollinations':
             pollinations_generator = PollinationsGenerator()
-            image_url= pollinations_generator.generate_image(prompt, model['name'])
-        # elif model['generation_app'] == 'flux_koda':
-        #     flux_koda = FluxKodanGenerator()
-        #     return flux_koda.generate_image(prompt)
+            image_url= pollinations_generator.generate_image(prompt, model['name'])        
         elif model['generation_app'] == 'hand_drawn_cartoon_style':
             hand_drawn_cartoon_generator = HandDrawnCartoonGenerator()
             image_url= hand_drawn_cartoon_generator.generate_image(prompt)
@@ -53,10 +114,9 @@ def generate_media(prompt, model):
         #     sdxl_lightning_generator = SDXLLightningGenerator()
         #     return sdxl_lightning_generator.generate_image(prompt)
         else:
-            # print(f"Image generation for {model['generation_app']} is not implemented")
-            generator = HuggingfaceImageGenerator(model['generation_app'])
-            image_url = generator.generate_image(prompt)
-            return None
+            print(f"Image generation for {model['generation_app']} is not implemented")            
+            image_url = generate_image(prompt, model['generation_app'])
+            # return image_url
     except Exception as e:
         print(f"Error generating media for {model['title']}: {str(e)}")
         return None
@@ -87,9 +147,6 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{file_label}">Download {file_label}</a>'
     return href
 
-# Set page config for better mobile responsiveness
-st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
-
 # Custom CSS for better mobile responsiveness
 st.markdown("""
     <style>
@@ -109,38 +166,76 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("AI Model Comparison Generator")
+async def main():
+    title, image_path, footer_content = initialize()
+    st.title("מחולל תמונות AI")
 
-prompt = st.text_area("Enter your prompt:", height=100)
+    prompt = st.text_area("Enter your prompt:", height=100)
 
-# Allow user to select models, with "Turbo" as default
-model_options = [model['title'] for model in models]
-default_model = "Turbo"
-selected_model_titles = st.multiselect(
-    "Select models to compare:",
-    model_options,
-    default=[default_model] if default_model in model_options else []
-)
+    with st.expander('אודות האפליקציה - נוצרה ע"י שגיא בר און'):
+        st.markdown('''
+         אפליקציית Star Wars Chat & Art מציעה חוויה ייחודית של שילוב בין עולם הדמיון והמציאות. 
+                    
+        תהנו מתמונות אמיתיות של דמויות מ-Star Wars, לצד תמונות מצוירות בסגנון וינטג' המעניקות תחושה קלאסית ומעוררת נוסטלגיה. 
+                            
+        אך זה לא הכל – תוכלו לשוחח עם הדמויות האהובות דרך צ'אט, ולקבל תשובות ישירות מהן! 
+                            
+        האפליקציה מציעה חווית שימוש אינטראקטיבית ומרהיבה, המשלבת אומנות וחדשנות בתקשורת עם הדמויות האייקוניות של סדרת סרטי המדע הבדיוני המפורסמת בעולם.
+        ''')   
 
-if st.button("Generate Comparison"):
-    if prompt.strip() and selected_model_titles:
-        selected_models = [model for model in models if model['title'] in selected_model_titles]
-        
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-        
-        # Create a placeholder for the spinner
-        with st.spinner("Generating comparison..."):
-            html_content = generate_html(prompt, selected_models, progress_bar, status_text)
-        
-        status_text.text("Comparison generated successfully!")
-        st.success("HTML content generated successfully!")
-        
-        # Display the HTML content directly in Streamlit
-        st.components.v1.html(html_content, height=600, scrolling=True)
-        
-        # Provide a download link for the HTML content
-        bio = BytesIO(html_content.encode())
-        st.markdown(get_binary_file_downloader_html(bio, 'comparison_results.html'), unsafe_allow_html=True)
-    else:
-        st.warning("Please enter a prompt and select at least one model.")
+
+    # Allow user to select models, with "Turbo" as default
+    model_options = [model['title'] for model in models]
+    default_model = "Flux.1 (Grok)"
+    selected_model_titles = st.multiselect(
+        "Select models to compare:",
+        model_options,
+        default=[default_model] if default_model in model_options else []
+    )
+
+    if st.button("Generate Comparison"):
+        if prompt.strip() and selected_model_titles:
+            selected_models = [model for model in models if model['title'] in selected_model_titles]
+            
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            # Create a placeholder for the spinner
+            with st.spinner("Generating comparison..."):
+                html_content = generate_html(prompt, selected_models, progress_bar, status_text)
+            
+            status_text.text("Comparison generated successfully!")
+            st.success("HTML content generated successfully!")
+            
+            # Display the HTML content directly in Streamlit
+            st.components.v1.html(html_content, height=600, scrolling=True)
+            
+            # Provide a download link for the HTML content
+            bio = BytesIO(html_content.encode())
+            st.markdown(get_binary_file_downloader_html(bio, 'comparison_results.html'), unsafe_allow_html=True)
+        else:
+            st.warning("Please enter a prompt and select at least one model.")
+    
+    # Display footer content
+    st.markdown(footer_content, unsafe_allow_html=True)    
+
+    # Display user count after the chatbot
+    user_count = get_user_count(formatted=True)
+    st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
+
+
+async def send_telegram_message_and_file(message, file_path):
+    sender = st.session_state.telegram_sender
+    try:
+        await sender.send_document(file_path, message)
+    finally:
+        await sender.close_session()
+
+if __name__ == "__main__":
+    if 'telegram_sender' not in st.session_state:
+        st.session_state.telegram_sender = TelegramSender()
+    if 'counted' not in st.session_state:
+        st.session_state.counted = True
+        increment_user_count()
+    initialize_user_count()
+    asyncio.run(main())

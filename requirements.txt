@@ -1,8 +1,10 @@
 streamlit 
+python-dotenv
+
 jinja2
 pillow
-python-dotenv
 gradio_client
+asynciio
 # diffusers #for StableDiffusionPipeline
 # torch #for StableDiffusionPipeline
 # transformers #for StableDiffusionPipeline

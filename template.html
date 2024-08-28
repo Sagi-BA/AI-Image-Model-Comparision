@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Model Comparison</title>
+    <title>מחולל תמונות AI 🌟</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap");
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 20px;
         background-color: #f0f0f0;
+        direction: rtl; /* Ensures all text flows right-to-left */
       }
       h1 {
         text-align: center;
@@ -27,6 +30,7 @@
         padding: 15px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease;
+        text-align: right; /* Align text to the right */
       }
       .model-item:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -82,24 +86,102 @@
       .download-btn:hover {
         background-color: #004080;
       }
+      .starfleet-link {
+        font-family: "Antonio", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #7df9ff; /* Neon blue color */
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+        background: linear-gradient(45deg, #000033, #000066);
+        border: 2px solid #7df9ff;
+        border-radius: 10px;
+        padding: 15px 30px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 30px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .starfleet-link::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          transparent 40%,
+          #7df9ff 40%,
+          #7df9ff 60%,
+          transparent 60%,
+          transparent 100%
+        );
+        transform: rotate(45deg);
+        animation: shine 3s infinite linear;
+        opacity: 0.5;
+      }
+
+      .starfleet-link:hover {
+        color: #ffffff;
+        text-shadow: 0 0 15px #7df9ff, 0 0 25px #7df9ff, 0 0 35px #7df9ff;
+        box-shadow: 0 0 20px #00bfff;
+        transform: scale(1.05);
+      }
+
+      @keyframes shine {
+        0% {
+          top: -50%;
+          left: -50%;
+        }
+        100% {
+          top: 150%;
+          left: 150%;
+        }
+      }
     </style>
   </head>
   <body>
-    <h1>AI Image  Model Comparison for Prompt: "{{ prompt }}"</h1>
+    <h1>{{ prompt }}</h1>
     <div class="model-grid">
       {% for model in models %}
       <div class="model-item">
-        <h2 id="{{ model.title }}" onclick="window.open('{{ model.link }}', '_blank');">{{ model.title }}</h2>
+        <h2
+          id="{{ model.title }}"
+          onclick="window.open('{{ model.media_url }}', '_blank');"
+        >
+          {{ model.title }}
+        </h2>
         <div class="image-container">
           {% if model.media_type == "image" %}
-          <img src="{{ model.media_url }}" alt="{{ model.title }}" onclick="downloadMedia('{{ model.media_url }}', '{{ model.file_name }}');" />
+          <img
+            src="{{ model.media_url }}"
+            alt="{{ model.title }}"
+            onclick="downloadMedia('{{ model.media_url }}', '{{ model.file_name }}');"
+          />
           {% elif model.media_type == "video" %}
-          <video src="{{ model.media_url }}" controls onclick="downloadMedia('{{ model.media_url }}', '{{ model.file_name }}');"></video>
+          <video
+            src="{{ model.media_url }}"
+            controls
+            onclick="downloadMedia('{{ model.media_url }}', '{{ model.file_name }}');"
+          ></video>
           {% endif %}
         </div>
-        </div>
-        {% endfor %}
       </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 30px; margin-bottom: 30px">
+      <a
+        href="https://sagi-ai-image-model-comparision.streamlit.app"
+        target="_blank"
+        class="starfleet-link"
+        >בקרו במחולל התמונות של שגיא בר און</a
+      >
     </div>
     <script>
       function downloadMedia(url, filename) {
