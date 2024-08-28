@@ -1,6 +1,6 @@
 streamlit 
 python-dotenv
-
+aiohttp #This is for telegram
 jinja2
 pillow
 gradio_client
