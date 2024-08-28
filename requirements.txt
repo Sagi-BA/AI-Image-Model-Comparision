@@ -4,7 +4,7 @@ aiohttp #This is for telegram
 requests
 jinja2
 pillow
-asynciio
+asyncio
 gradio_client
 deep_translator
 # diffusers #for StableDiffusionPipeline
