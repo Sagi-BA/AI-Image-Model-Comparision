@@ -5,6 +5,7 @@ jinja2
 pillow
 gradio_client
 asynciio
+deep_translator
 # diffusers #for StableDiffusionPipeline
 # torch #for StableDiffusionPipeline
 # transformers #for StableDiffusionPipeline
