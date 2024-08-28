@@ -1,10 +1,11 @@
 streamlit 
 python-dotenv
 aiohttp #This is for telegram
+requests
 jinja2
 pillow
-gradio_client
 asynciio
+gradio_client
 deep_translator
 # diffusers #for StableDiffusionPipeline
 # torch #for StableDiffusionPipeline
