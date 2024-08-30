@@ -98,7 +98,47 @@ img {
   color: white !important;
   text-decoration: none !important;
 }
-
+.stButton > button {
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.stButton > button:hover {
+  background-color: #45a049;
+}
+.stButton > button:active {
+  background-color: #3e8e41;
+}
+.stFormSubmitButton > button {
+  font-family: "Orbitron", sans-serif !important;
+  color: white !important;
+  background-color: #ff0000ac; /* Bright red */
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.stFormSubmitButton > button:hover {
+  background-color: #cc0000; /* Darker red for hover state */
+}
+.stFormSubmitButton > button:active {
+  background-color: #990000; /* Even darker red for active state */
+}
 @media screen and (max-width: 1125px) {
   .button {
     width: 225px;
