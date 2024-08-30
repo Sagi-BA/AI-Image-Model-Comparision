@@ -159,28 +159,14 @@ def generate_html(prompt, selected_models, progress_bar, status_text):
 def get_binary_file_downloader_html(bin_file, file_label='File'):
     bin_file.seek(0)
     bin_str = base64.b64encode(bin_file.read()).decode()
-    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{file_label}">Download {file_label}</a>'
+    href = f'''
+    <div class="download-button-container">
+        <a href="data:application/octet-stream;base64,{bin_str}" download="{file_label}" class="download-button">
+            לשמירת התמונות
+        </a>
+    </div>
+    '''
     return href
-
-# Custom CSS for better mobile responsiveness
-# st.markdown("""
-#     <style>
-#     .reportview-container .main .block-container {
-#         max-width: 1000px;
-#         padding-top: 2rem;
-#         padding-right: 2rem;
-#         padding-left: 2rem;
-#         padding-bottom: 2rem;
-#     }
-#     .stButton>button {
-#         width: 100%;
-#     }
-#     .stTextArea>div>div>textarea {
-#         height: 150px;
-#     }
-#     </style>
-#     """, unsafe_allow_html=True)
-
 
 @st.cache_resource
 def get_translator():
@@ -195,17 +181,10 @@ def translate_to_hebrew(text):
         return text
     
 async def create_chatbot():
-    st.session_state.setdefault('prompt', '')
-    st.session_state.setdefault('generate', False)
-
     # Create a form for the chat input and submit button
     with st.form(key='chat_form'):
-        prompt = st.text_area("מה הפרומפט שלך...", key='prompt_input', value=st.session_state.prompt)
+        prompt = st.text_area("יש לכתוב פרומפט לייצור תמונה...", key='prompt_input')
         submit_button = st.form_submit_button(label='Generate')
-
-        if submit_button:
-            st.session_state.prompt = prompt
-            st.session_state.generate = True
 
     # Allow user to select models, with "Turbo" as default
     model_options = [model['title'] for model in models]
@@ -216,8 +195,8 @@ async def create_chatbot():
         default=[default_model] if default_model in model_options else []
     )
 
-    if st.session_state.generate and st.session_state.prompt and selected_model_titles:
-        st.markdown(st.session_state.prompt)
+    if submit_button and prompt and selected_model_titles:
+        st.markdown(prompt)
         selected_models = [model for model in models if model['title'] in selected_model_titles]
 
         progress_bar = st.progress(0)
@@ -225,13 +204,11 @@ async def create_chatbot():
 
         # Create a placeholder for the spinner
         with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
-            html_content = generate_html(st.session_state.prompt, selected_models, progress_bar, status_text)
+            html_content = generate_html(prompt, selected_models, progress_bar, status_text)
 
-            status_text.text("התמונות נוצרו בהצלחה!")
-            st.success("נוצר קובץ HTML להורדה!")
-
-            # Display the HTML content directly in Streamlit
-            st.components.v1.html(html_content, height=600, scrolling=True)
+            # st.success("התמונות נוצרו בהצלחה!")
+            # status_text.text("התמונות נוצרו בהצלחה!")
+            # st.success("נוצר קובץ HTML להורדה!")
 
             # Provide a download link for the HTML content
             bio = BytesIO(html_content.encode('utf-8'))
@@ -239,16 +216,18 @@ async def create_chatbot():
             download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
             st.markdown(download_link, unsafe_allow_html=True)
 
+            # Display the HTML content directly in Streamlit
+            st.components.v1.html(html_content, height=600, scrolling=True)
+
             # Send message to Telegram
             try:
-                await send_telegram_message_and_file(st.session_state.prompt, html_content)
-                # st.success("Sent to Telegram successfully!")
+                await send_telegram_message_and_file(prompt, html_content)
             except Exception as e:
                 print(f"Failed to send to Telegram: {str(e)}")
-                # st.error(f"Failed to send to Telegram: {str(e)}")
-
-        # Reset the generate flag
-        st.session_state.generate = False
+                
+def load_html_file(file_name):
+    with open(file_name, 'r', encoding='utf-8') as f:
+        return f.read()
 
 async def send_telegram_message_and_file(message, file_content: BytesIO):
     sender = TelegramSender()
@@ -270,15 +249,10 @@ async def send_telegram_message_and_file(message, file_content: BytesIO):
 async def main():
     title, image_path, footer_content = initialize()
     st.title("מחולל תמונות AI 🌟")
-
-    # prompt = st.text_area("Enter your prompt:", height=100)
-
-    with st.expander('אודות האפליקציה - נוצרה ע"י שגיא בר און'):
-        st.markdown('''
-         אפליקציית מחולל התמונות של שגיא בר און הופכת את הטקסט שלך לאמנות מרהיבה. ללא צורך בניסיון, תוכל ליצור יצירות ייחודיות למגוון שימושים.
-                    
-        באמצעות מחולל תמונות AI, אתם יכולים להזין כל טקסט או רעיון שעולה בראשכם ולקבל תמונה ייחודית שנוצרה במיוחד עבורכם. השימוש בטכנולוגיות הבינה המלאכותית שלנו מבטיח שהתמונות יהיו איכותיות, יצירתיות, ומותאמות אישית בדיוק לפי הצרכים והחזון שלכם.
-        ''')
+    
+    # Load and display the custom expander HTML
+    expander_html = load_html_file('expander.html')
+    st.markdown(expander_html, unsafe_allow_html=True)    
         
     await create_chatbot()
 

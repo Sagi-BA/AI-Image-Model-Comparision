@@ -1,13 +1,6 @@
 {
   "models": [
     {
-      "generation_app": "alvdansen/flux-koda",
-      "link": "https://huggingface.co/alvdansen/flux-koda",
-      "title": "Koda Diffusion (Flux)",
-      "name": "Koda Diffusion (Flux)",
-      "media_type": "image"
-    },
-    {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
       "title": "Flux.1 (Grok)",
@@ -19,6 +12,13 @@
       "link": "https://pollinations.ai/",
       "title": "Turbo",
       "name": "turbo",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "alvdansen/flux-koda",
+      "link": "https://huggingface.co/alvdansen/flux-koda",
+      "title": "Koda Diffusion (Flux)",
+      "name": "Koda Diffusion (Flux)",
       "media_type": "image"
     },
     {
