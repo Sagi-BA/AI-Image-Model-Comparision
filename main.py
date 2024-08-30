@@ -3,13 +3,12 @@ import asyncio
 import streamlit as st
 from urllib.parse import urlparse
 import json
-import tempfile
 from jinja2 import Template
 import base64
 from io import BytesIO
 import os
 from dotenv import load_dotenv
-import random
+import time
 from deep_translator import GoogleTranslator
 
 # Initialize components
@@ -42,7 +41,7 @@ with open("template.html", "r", encoding="utf-8") as file:
     html_template = file.read()
 
 # Read models from JSON file
-with open("data/models.json", "r") as file:
+with open("data/models.json", "r", encoding="utf-8") as file:
     models_data = json.load(file)
     models = models_data["models"]
 
@@ -58,15 +57,9 @@ def get_file_type_from_url(url):
     else:
         return 'unknown'
 
-def add_random_spaces(prompt):
-    words = list(prompt)
-    num_spaces = random.randint(1, 100)
-    
-    for _ in range(num_spaces):
-        position = random.randint(0, len(words))
-        words.insert(position, ' ')
-    
-    return ''.join(words)
+def add_timestamp(prompt):
+    timestamp = int(time.time())
+    return f"{prompt} [Timestamp: {timestamp}]"
 
 def generate_image(prompt, model_name):    
     HF_TOKEN = os.getenv("HF_TOKEN")
@@ -78,7 +71,7 @@ def generate_image(prompt, model_name):
         raise ValueError("Hugging Face URL must be set in environment variables")
     
     # Add random spaces to the prompt
-    prompt_with_spaces = add_random_spaces(prompt)
+    prompt_with_spaces = add_timestamp(prompt)
 
     url = HF_URL + model_name        
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}    
@@ -223,7 +216,7 @@ async def main():
 
     # Allow user to select models, with "Turbo" as default
     model_options = [model['title'] for model in models]
-    default_model = "Flux.1 (Grok)"
+    default_model = "⚡ Flux.1 (Grok)"
     selected_model_titles = st.multiselect(
         "בחרו מודלי תמונה מהרשימה 👈",
         model_options,
