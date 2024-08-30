@@ -182,7 +182,7 @@ async def main():
                             
         האפליקציה מציעה חווית שימוש אינטראקטיבית ומרהיבה, המשלבת אומנות וחדשנות בתקשורת עם הדמויות האייקוניות של סדרת סרטי המדע הבדיוני המפורסמת בעולם.
         ''')   
-
+ 
 
     # Allow user to select models, with "Turbo" as default
     model_options = [model['title'] for model in models]
