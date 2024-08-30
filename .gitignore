@@ -9,3 +9,4 @@ main copy.py
 hugging.py
 data/models copy.json
 main copy.py
+.streamlit/config.toml
