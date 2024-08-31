@@ -29,6 +29,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "unsplash",
+      "link": "https://unsplash.com/",
+      "title": "⚡ Unsplash",
+      "name": "Unsplash",
+      "media_type": "image"
+    },
+    {
       "generation_app": "alvdansen/flux-koda",
       "link": "https://huggingface.co/alvdansen/flux-koda",
       "title": "Koda Diffusion (Flux)",

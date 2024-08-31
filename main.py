@@ -21,6 +21,7 @@ from utils.text_to_image.pollinations_generator import PollinationsGenerator
 from utils.text_to_image.hand_drawn_cartoon_generator import HandDrawnCartoonGenerator
 from utils.text_to_video.animatediff_lightning_generator import AnimateDiffLightningGenerator
 from utils.imgur_uploader import ImgurUploader
+from utils.text_to_image.unsplash_generator import UnsplashGenerator
 
 # Load environment variables from .env file
 load_dotenv()
@@ -52,10 +53,12 @@ def get_file_type_from_url(url):
     path = parsed_url.path
     if path.endswith('.mp4'):
         return 'video'
-    elif path.endswith(('.jpg', '.jpeg', '.png', '.gif')):
-        return 'image'
     else:
-        return 'unknown'
+        return 'image'
+    # elif path.endswith(('.jpg', '.jpeg', '.png', '.gif')):
+    #     return 'image'
+    # else:
+    #     return 'unknown'
 
 def add_timestamp(prompt):
     timestamp = int(time.time())
@@ -110,12 +113,14 @@ def generate_media(prompt, model):
             image_url= hand_drawn_cartoon_generator.generate_image(prompt)
         elif model['generation_app'] == 'animatediff_lightning':
             animatediff_lightning_generator = AnimateDiffLightningGenerator()
-            image_url= animatediff_lightning_generator.generate_image(prompt)        
+            image_url= animatediff_lightning_generator.generate_image(prompt)    
+        elif model['generation_app'] == 'unsplash':
+            unsplash_generator = UnsplashGenerator()
+            image_url= unsplash_generator.generate_image(prompt)         
         # elif model['generation_app'] == 'sdxl_lightning':
         #     sdxl_lightning_generator = SDXLLightningGenerator()
         #     return sdxl_lightning_generator.generate_image(prompt)
-        else:
-            print(f"Image generation for {model['generation_app']} is not implemented")            
+        else:            
             image_url = generate_image(prompt, model['generation_app'])
             # return image_url
     except Exception as e:
@@ -125,7 +130,8 @@ def generate_media(prompt, model):
     # Remove 'https://' from the media_url if it exists
     # if 'https://' in image_url:
     #     image_url = image_url.replace('https://', '')
-
+    
+    print(f"Image generation for {model['generation_app']} is not implemented")
     return image_url
 
 def generate_html(prompt, selected_models, progress_bar, status_text):
