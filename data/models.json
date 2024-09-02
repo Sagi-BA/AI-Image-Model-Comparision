@@ -99,6 +99,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "stabilityai/sdxl-turbo",
+      "link": "https://huggingface.co/stabilityai/sdxl-turbo",
+      "title": "🆕 SDXL-Turbo Model Card",
+      "name": "SDXL-Turbo Model Card",
+      "media_type": "image"
+    },
+    {
       "generation_app": "animatediff_lightning",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "AnimateDiff Lightning",
