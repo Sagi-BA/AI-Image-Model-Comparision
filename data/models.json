@@ -106,10 +106,17 @@
       "media_type": "image"
     },
     {
-      "generation_app": "animatediff_lightning",
-      "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
-      "title": "AnimateDiff Lightning",
-      "name": "AnimateDiff-Lightning",
+      "generation_app": "stabilityai/sdxl-turbo",
+      "link": "https://huggingface.co/stabilityai/sdxl-turbo",
+      "title": "🆕 SDXL-Turbo Model Card",
+      "name": "SDXL-Turbo Model Card",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "fofr/flux-mona-lisa",
+      "link": "https://huggingface.co/fofr/flux-mona-lisa",
+      "title": "Flux Mona Lisa",
+      "name": "Flux Mona Lisa",
       "media_type": "video"
     }
   ]
