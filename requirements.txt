@@ -7,6 +7,15 @@ pillow
 asyncio
 gradio_client
 deep_translator
+
+
+
+# python -m venv myenv
+# source myenv/bin/activate  # On Windows: myenv\Scripts\activate
+# pip install horde-client
+# pip install streamlit jinja2 python-dotenv deep-translator horde-client
+# pip install --upgrade six urllib3
+
 # diffusers #for StableDiffusionPipeline
 # torch #for StableDiffusionPipeline
 # transformers #for StableDiffusionPipeline

@@ -39,7 +39,7 @@ class TelegramSender:
     async def verify_bot_token(self):
         result = await self._make_request('get', 'getMe')
         if result:
-            print(f"Bot verified: {result['result']['first_name']} (@{result['result']['username']})")
+            # print(f"Bot verified: {result['result']['first_name']} (@{result['result']['username']})")
             return True
         return False
 

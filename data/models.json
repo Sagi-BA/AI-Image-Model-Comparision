@@ -29,6 +29,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "black-forest-labs/FLUX.1-dev",
+      "link": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
+      "title": "⚡ FLUX.1-dev",
+      "name": "FLUX.1-dev",
+      "media_type": "image"
+    },
+    {
       "generation_app": "unsplash",
       "link": "https://unsplash.com/",
       "title": "⚡ Unsplash",
