@@ -71,6 +71,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "multimodalart/vintage-ads-flux",
+      "link": "https://huggingface.co/multimodalart/vintage-ads-flux",
+      "title": "🆕 vintage ads flux",
+      "name": "vintage ads flux",
+      "media_type": "image"
+    },
+    {
       "generation_app": "animatediff_lightning",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "AnimateDiff Lightning",
