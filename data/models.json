@@ -92,6 +92,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "alvdansen/softpasty-flux-dev",
+      "link": "https://huggingface.co/alvdansen/softpasty-flux-dev",
+      "title": "🆕 Soft Pasty (Flux Dev)",
+      "name": "Soft Pasty (Flux Dev)",
+      "media_type": "image"
+    },
+    {
       "generation_app": "animatediff_lightning",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "AnimateDiff Lightning",

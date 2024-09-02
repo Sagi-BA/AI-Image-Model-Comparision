@@ -65,7 +65,7 @@ def add_timestamp(prompt):
     timestamp = int(time.time())
     return f"{prompt} [Timestamp: {timestamp}]"
 
-@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
 def generate_image(prompt, model_name):    
     HF_TOKEN = os.getenv("HF_TOKEN")
     HF_URL = os.getenv("HF_URL")    
