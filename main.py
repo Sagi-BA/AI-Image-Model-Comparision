@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 import time
 from deep_translator import GoogleTranslator
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 # Initialize components
 from utils.init import initialize
@@ -64,6 +65,7 @@ def add_timestamp(prompt):
     timestamp = int(time.time())
     return f"{prompt} [Timestamp: {timestamp}]"
 
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def generate_image(prompt, model_name):    
     HF_TOKEN = os.getenv("HF_TOKEN")
     HF_URL = os.getenv("HF_URL")    

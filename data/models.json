@@ -31,7 +31,7 @@
     {
       "generation_app": "black-forest-labs/FLUX.1-dev",
       "link": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
-      "title": "⚡ FLUX.1-dev",
+      "title": "🆕⚡ FLUX.1-dev",
       "name": "FLUX.1-dev",
       "media_type": "image"
     },
@@ -57,18 +57,25 @@
       "media_type": "image"
     },
     {
-      "generation_app": "animatediff_lightning",
-      "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
-      "title": "AnimateDiff Lightning",
-      "name": "AnimateDiff-Lightning",
-      "media_type": "video"
-    },
-    {
       "generation_app": "davisbro/half_illustration",
       "link": "https://huggingface.co/davisbro/half_illustration",
       "title": "half illustration",
       "name": "half illustration",
       "media_type": "image"
+    },
+    {
+      "generation_app": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "link": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "title": "🆕 FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "name": "FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "animatediff_lightning",
+      "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
+      "title": "AnimateDiff Lightning",
+      "name": "AnimateDiff-Lightning",
+      "media_type": "video"
     }
   ]
 }
