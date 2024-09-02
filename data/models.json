@@ -78,6 +78,20 @@
       "media_type": "image"
     },
     {
+      "generation_app": "KBlueLeaf/Kohaku-XL-Zeta",
+      "link": "https://huggingface.co/KBlueLeaf/Kohaku-XL-Zeta",
+      "title": "🆕 Kohaku XL Zeta",
+      "name": "Kohaku XL Zeta",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "multimodalart/flux-tarot-v1",
+      "link": "https://huggingface.co/multimodalart/flux-tarot-v1",
+      "title": "🆕 FLUX Tarot v1",
+      "name": "FLUX Tarot v1",
+      "media_type": "image"
+    },
+    {
       "generation_app": "animatediff_lightning",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "AnimateDiff Lightning",
