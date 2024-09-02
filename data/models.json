@@ -113,6 +113,13 @@
       "media_type": "image"
     },
     {
+      "generation_app": "Toology/schismaynard-lora",
+      "link": "https://huggingface.co/Toology/schismaynard-lora",
+      "title": "🆕 Schismaynard Lora",
+      "name": "Schismaynard Lora",
+      "media_type": "image"
+    },
+    {
       "generation_app": "fofr/flux-mona-lisa",
       "link": "https://huggingface.co/fofr/flux-mona-lisa",
       "title": "Flux Mona Lisa",
