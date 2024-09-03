@@ -73,8 +73,8 @@
     {
       "generation_app": "multimodalart/vintage-ads-flux",
       "link": "https://huggingface.co/multimodalart/vintage-ads-flux",
-      "title": "🆕 vintage ads flux",
-      "name": "vintage ads flux",
+      "title": "🆕 Vintage ADS flux",
+      "name": "Vintage ADS flux",
       "media_type": "image"
     },
     {
@@ -96,13 +96,6 @@
       "link": "https://huggingface.co/alvdansen/softpasty-flux-dev",
       "title": "🆕 Soft Pasty (Flux Dev)",
       "name": "Soft Pasty (Flux Dev)",
-      "media_type": "image"
-    },
-    {
-      "generation_app": "stabilityai/sdxl-turbo",
-      "link": "https://huggingface.co/stabilityai/sdxl-turbo",
-      "title": "🆕 SDXL-Turbo Model Card",
-      "name": "SDXL-Turbo Model Card",
       "media_type": "image"
     },
     {
