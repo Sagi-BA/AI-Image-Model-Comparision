@@ -168,8 +168,16 @@
       "name": "FLUX.1-dev Pprx",
       "media_type": "image"
     },
+
     {
-      "generation_app": "bingbangboom/flux_colorscape",
+      "generation_app": "Ethanli2024/uushirt",
+      "link": "https://huggingface.co/Ethanli2024/uushirt",
+      "title": "🆕 FLUX.1-dev Uushirt",
+      "name": "FLUX.1-dev Uushirt",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "animatediff_lightning",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "📼 AnimateDiff Lightning",
       "name": "AnimateDiff Lightning",
