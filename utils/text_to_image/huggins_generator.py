@@ -77,7 +77,7 @@ def test_huggingface_image_generator():
         generator = HugginsGenerator()
         
         # Define a sample prompt and model name for testing
-        sample_model_name = "prostt/kitchenone"
+        sample_model_name = "markury/airplaneears-flux"
         sample_prompt = "Close-up of the face of a gruff old fisherman, with deep wrinkles, wearing a yellow raincoat and a woolen hat, against a background of a stormy sea"
         
         
