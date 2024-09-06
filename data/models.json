@@ -10,8 +10,30 @@
     {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
-      "title": "⚡ Turbo",
+      "title": "Turbo",
       "name": "turbo",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Realism",
+      "name": "flux-realism",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Anime",
+      "name": "flux-anime",
+      "media_type": "image"
+    },
+
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux 3D",
+      "name": "flux-3d",
       "media_type": "image"
     },
     {

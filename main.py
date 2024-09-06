@@ -207,101 +207,15 @@ async def send_telegram_message_and_file(message, file_content: BytesIO):
     finally:
         await sender.close_session()
 
-async def main():
-    title, image_path, footer_content = initialize()
-    st.title("מחולל תמונות AI 🌟")
-    
-    # Load and display the custom expander HTML
-    expander_html = load_html_file('expander.html')
-    st.markdown(expander_html, unsafe_allow_html=True)    
-    
-    # Load examples
-    examples = load_examples()
-
-    # Create a selectbox for examples with a label
-    example_titles = [""] + [example["title"] for example in examples]
-    selected_example = st.selectbox(
-        label="",  # Empty string for label
-        options=example_titles,
-        index=None,
-        placeholder="פרומפטים לדוגמא 👈",
-    )
-
-    total_models = len(models)
-    new_models = sum(1 for model in models if model['title'].startswith('🆕'))
-
-
-    # Allow user to select models, with "Turbo" as default
-    model_options = [model['title'] for model in models]
-    default_model = "⚡ Flux.1 (Grok)"
-    selected_model_titles = st.multiselect(
-       f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
-        model_options,
-        placeholder=f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
-        default=[default_model] if default_model in model_options else []
-    )
-
-    # Create a form for the chat input and submit button
-    with st.form(key='chat_form'):
-        prompt = ""
-        
-        # Update prompt if an example is selected
-        if selected_example:
-            selected_example_data = next((example for example in examples if example["title"] == selected_example), None)
-            if selected_example_data:
-                prompt = selected_example_data["prompt"]                
-        
-        prompt = st.text_area("יש לכתוב פרומפט ליצירת תמונה...", prompt, key='prompt_input',help="יצירת תמונות")
-        submit_button = st.form_submit_button(label='Generate', use_container_width=True)
-
-    if submit_button and prompt and selected_model_titles:
-        st.markdown(prompt)
-        selected_models = [model for model in models if model['title'] in selected_model_titles]
-
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-
-        # Create a placeholder for the spinner
-        with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
-            html_content = generate_html(prompt, selected_models, progress_bar, status_text)
-
-            # st.success("התמונות נוצרו בהצלחה!")
-            # status_text.text("התמונות נוצרו בהצלחה!")
-            # st.success("נוצר קובץ HTML להורדה!")
-
-            # Provide a download link for the HTML content
-            bio = BytesIO(html_content.encode('utf-8'))
-            
-            download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
-            st.markdown(download_link, unsafe_allow_html=True)
-
-            # Display the HTML content directly in Streamlit
-            st.components.v1.html(html_content, height=600, scrolling=True)
-
-            # Send message to Telegram
-            try:
-                await send_telegram_message_and_file(prompt, html_content)
-            except Exception as e:
-                print(f"Failed to send to Telegram: {str(e)}")
-
-    # dISPLAY models_comparison_template.html
-    # ADD examples.py
-    add_examples_images()
-    # Display footer content
-    st.markdown(footer_content, unsafe_allow_html=True)    
-
-    # Display user count after the chatbot
-    user_count = get_user_count(formatted=True)
-    st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
-# Add this function to load examples
-
 def load_examples():
     with open("data/Examples.json", "r", encoding="utf-8") as file:
         return json.load(file)
 
+@st.cache_data
 def load_image(image_path):
     return Image.open(image_path)
 
+@st.cache_data
 def get_image_data(base_path):
     image_data = {}
     for folder in os.listdir(base_path):
@@ -331,29 +245,18 @@ def image_to_base64(img):
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
+
 def add_examples_images():
     base_path = 'uploads'
     image_data = get_image_data(base_path)
         
     for prompt, data in image_data.items():
-        # st.header(prompt)
-        
-        # desc_col, models_col = st.columns([1, 1])
-        
-        # with desc_col:
-        #     st.markdown(f"""
-        #     <div class="description-container">
-        #         <div class="description">{data['description']}</div>
-        #     </div>
-        #     """, unsafe_allow_html=True)
-        
         st.markdown(f"""
             <div class="description-container">
                 <div class="description">{data['description']}</div>
             </div>
             """, unsafe_allow_html=True)
         
-        # with models_col:
         model_cols = st.columns(len(data['models']))
         
         for col, model in zip(model_cols, data['models']):
@@ -371,6 +274,116 @@ def add_examples_images():
                 """, unsafe_allow_html=True)
     
     st.markdown("<hr>", unsafe_allow_html=True)
+
+# Add this function to load image styles
+@st.cache_data
+def load_image_styles():
+    with open("data/image_styles.json", "r", encoding="utf-8") as file:
+        return json.load(file)["styles"]
+
+async def main():
+    title, image_path, footer_content = initialize()
+    st.title("מחולל תמונות AI 🌟")
+    
+    # Load and display the custom expander HTML
+    expander_html = load_html_file('expander.html')
+    st.markdown(expander_html, unsafe_allow_html=True)    
+    
+    # Load examples
+    examples = load_examples()
+
+    # Create a selectbox for examples with a label
+    example_titles = [""] + [example["title"] for example in examples]
+    selected_example = st.selectbox(
+        label="",  # Empty string for label
+        options=example_titles,
+        index=None,  # Set default to empty option
+        key="example_selector",
+        placeholder="פרומפטים לדוגמא 👈",
+    )
+    # Initialize session state for prompt if it doesn't exist
+    if 'prompt' not in st.session_state:
+        st.session_state.prompt = ""
+
+     # Update prompt if an example is selected
+    if selected_example and selected_example != "":
+        selected_example_data = next((example for example in examples if example["title"] == selected_example), None)
+        if selected_example_data:
+            st.session_state.prompt = selected_example_data["prompt"]
+
+    # 1. Text area for prompt
+    prompt = st.text_area("יש לכתוב פרומפט ליצירת תמונה...", value=st.session_state.prompt, key='prompt_input', help="יצירת תמונות")
+
+    # 2. Selectbox for style
+    image_styles = load_image_styles()
+    style_options = [style['name'] for style in image_styles]
+    selected_style = st.selectbox(
+        "בחרו סגנון תמונה 🎨",
+        options=style_options,
+        index=0,  # Set default to the first style (which should be "סגנון חופשי")
+        key='style_input'
+    )
+
+    # 3. Multiselect for models
+    total_models = len(models)
+    new_models = sum(1 for model in models if model['title'].startswith('🆕'))
+    model_options = [model['title'] for model in models]
+    default_model = "⚡ Flux.1 (Grok)"
+    selected_model_titles = st.multiselect(
+       f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
+        model_options,
+        placeholder=f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
+        default=[default_model] if default_model in model_options else []
+    )
+
+    # Generate button
+    if st.button('Generate', use_container_width=True):
+        if prompt and selected_model_titles:
+            st.markdown(prompt)
+            selected_models = [model for model in models if model['title'] in selected_model_titles]
+
+            # Process selected style
+            selected_style_prefix = next(style['prompt_prefix'] for style in image_styles if style['name'] == selected_style)
+            
+            # Combine style prefix with the user's prompt
+            if selected_style != "סגנון חופשי" and selected_style_prefix:
+                full_prompt = f"{selected_style_prefix} {prompt}"
+            else:
+                full_prompt = prompt
+
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+
+            # Create a placeholder for the spinner
+            with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
+                html_content = generate_html(full_prompt, selected_models, progress_bar, status_text)
+
+                # Provide a download link for the HTML content
+                bio = BytesIO(html_content.encode('utf-8'))
+                
+                download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
+                st.markdown(download_link, unsafe_allow_html=True)
+
+                # Display the HTML content directly in Streamlit
+                st.components.v1.html(html_content, height=600, scrolling=True)
+
+                # Send message to Telegram
+                try:
+                    await send_telegram_message_and_file(full_prompt, html_content)
+                except Exception as e:
+                    print(f"Failed to send to Telegram: {str(e)}")
+
+    # dISPLAY models_comparison_template.html
+    # ADD examples.py
+    add_examples_images()
+    # Display footer content
+    st.markdown(footer_content, unsafe_allow_html=True)    
+
+    # Display user count after the chatbot
+    user_count = get_user_count(formatted=True)
+    st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
+# Add this function to load examples
+
 if __name__ == "__main__":
     if 'counted' not in st.session_state:
         st.session_state.counted = True
