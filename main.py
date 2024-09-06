@@ -251,7 +251,7 @@ async def main():
             if selected_example_data:
                 prompt = selected_example_data["prompt"]                
         
-        prompt = st.text_area("יש לכתוב פרומפט לייצור תמונה...", prompt, key='prompt_input',help="יצירת תמונות")
+        prompt = st.text_area("יש לכתוב פרומפט ליצירת תמונה...", prompt, key='prompt_input',help="יצירת תמונות")
         submit_button = st.form_submit_button(label='Generate', use_container_width=True)
 
     if submit_button and prompt and selected_model_titles:
