@@ -227,13 +227,17 @@ async def main():
         placeholder="פרומפטים לדוגמא 👈",
     )
 
+    total_models = len(models)
+    new_models = sum(1 for model in models if model['title'].startswith('🆕'))
+
+
     # Allow user to select models, with "Turbo" as default
     model_options = [model['title'] for model in models]
     default_model = "⚡ Flux.1 (Grok)"
     selected_model_titles = st.multiselect(
-        "בחרו מודלי תמונה מהרשימה 👈",
+       f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
         model_options,
-        placeholder="בחרו מודלי תמונה מהרשימה 👈",
+        placeholder=f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
         default=[default_model] if default_model in model_options else []
     )
 
@@ -330,138 +334,43 @@ def image_to_base64(img):
 def add_examples_images():
     base_path = 'uploads'
     image_data = get_image_data(base_path)
-
-    # Custom CSS and JavaScript for RTL layout, styling, and interactivity
-    st.markdown("""
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap');
-        .description-container {
-        background-color: #f7f7f7;
-        border-radius: 8px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        }
-        .description {
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: #333;
-        }
-        .model-name {
-            font-weight: 500;
-            color: #444;
-            margin-bottom: 0.25rem;
-            text-align: center;
-        }
-        .model-container {
-            display: flex;            
-            flex-direction: column;
-            align-items: center;
-        }
-        .model-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .model-image:hover {
-            transform: scale(1.1);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 1100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        </style>
-        
-        <div id="imageModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="modalImage">
-        </div>
-
-        <script>
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("modalImage");
-        var span = document.getElementsByClassName("close")[0];
-
-        function showModal(imgSrc) {
-            alert('s');
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-        }
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        </script>
-        """, unsafe_allow_html=True)
         
     for prompt, data in image_data.items():
-        st.header(prompt)
+        # st.header(prompt)
         
-        desc_col, models_col = st.columns([1, 4])
+        # desc_col, models_col = st.columns([1, 1])
         
-        with desc_col:
-            st.markdown(f"""
+        # with desc_col:
+        #     st.markdown(f"""
+        #     <div class="description-container">
+        #         <div class="description">{data['description']}</div>
+        #     </div>
+        #     """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
             <div class="description-container">
                 <div class="description">{data['description']}</div>
             </div>
             """, unsafe_allow_html=True)
         
-        with models_col:
-            model_cols = st.columns(len(data['models']))
-            
-            for col, model in zip(model_cols, data['models']):
-                with col:
-                    img = load_image(model['image_path'])
-                    img_b64 = image_to_base64(img)
-                    st.markdown(f"""
-                    <div class="model-container">
-                        <div class="model-name">{model['name']}</div>
-                        <img src="data:image/png;base64,{img_b64}" 
-                             class="model-image" 
-                             onclick="alert(this.src)"
-                             alt="{model['name']}">
-                    </div>
-                    """, unsafe_allow_html=True)
+        # with models_col:
+        model_cols = st.columns(len(data['models']))
         
-        st.markdown("<hr>", unsafe_allow_html=True)
+        for col, model in zip(model_cols, data['models']):
+            with col:
+                img = load_image(model['image_path'])
+                img_b64 = image_to_base64(img)
+                st.markdown(f"""
+                <div class="model-container">                    
+                    <img src="data:image/png;base64,{img_b64}" 
+                            class="model-image" 
+                            onclick="alert(this.src)"
+                            alt="{model['name']}">
+                    <div class="model-name">{model['name']}</div>
+                </div>
+                """, unsafe_allow_html=True)
+    
+    st.markdown("<hr>", unsafe_allow_html=True)
 if __name__ == "__main__":
     if 'counted' not in st.session_state:
         st.session_state.counted = True

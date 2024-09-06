@@ -66,8 +66,8 @@
     {
       "generation_app": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
       "link": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
-      "title": "FLUX.1-dev-LoRA-blended-realistic-illustration",
-      "name": "FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "title": "FLUX.1-dev LoRA-blended-realistic-illustration",
+      "name": "FLUX.1-dev Realistic LoRA",
       "media_type": "image"
     },
     {

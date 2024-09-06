@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap");
 
 :root {
   --main-bg-color: #ffffff;
@@ -60,44 +61,6 @@ p {
   margin: 1px;
 }
 
-.stButton > button:hover {
-  color: var(--text-color) !important;
-  background-color: var(--secondary-bg-color) !important;
-  border-color: var(--accent-color) !important;
-  box-shadow: 0 0 10px var(--glow-color);
-}
-
-img {
-  max-width: 768px; /* Already in px */
-  max-height: 648px; /* Changed from 60vh, assuming 1080px viewport height */
-  float: right;
-  margin: 0 30px 20px 0;
-  border-radius: 10px;
-  background: linear-gradient(to bottom, #1c1e22 0%, #2c3e50 100%);
-  box-shadow: 0 0 25px var(--glow-color);
-  transition: box-shadow 1s;
-}
-.download-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.download-button {
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none !important;
-  background-color: #4caf50;
-  color: white !important;
-  border-radius: 4px;
-  border: none;
-  font-size: 26px;
-  transition: background-color 0.3s;
-}
-.download-button:hover {
-  background-color: #45a049;
-  color: white !important;
-  text-decoration: none !important;
-}
 .stButton > button {
   color: white;
   background-color: #4caf50;
@@ -138,6 +101,57 @@ img {
 }
 .stFormSubmitButton > button:active {
   background-color: #990000; /* Even darker red for active state */
+}
+
+.description-container {
+  background-color: #626262;
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.description {
+  padding: 1rem;
+  font-size: 25px;
+  color: #ffffff;
+}
+.model-name {
+  font-weight: 500;
+  color: #464545;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+.model-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.model-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.model-image:hover {
+  transform: scale(1.6);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 @media screen and (max-width: 1125px) {
   .button {
