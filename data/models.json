@@ -127,7 +127,14 @@
       "media_type": "image"
     },
     {
-      "generation_app": "animatediff_lightning",
+      "generation_app": "bingbangboom/flux_colorscape",
+      "link": "https://huggingface.co/bingbangboom/flux_colorscape",
+      "title": "🆕 Flux colorscape",
+      "name": "Flux colorscape",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "bingbangboom/flux_colorscape",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "📼 AnimateDiff Lightning",
       "name": "AnimateDiff Lightning",
