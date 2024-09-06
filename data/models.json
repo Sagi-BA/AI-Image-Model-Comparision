@@ -134,6 +134,34 @@
       "media_type": "image"
     },
     {
+      "generation_app": "davisbro/designer-architecture",
+      "link": "https://huggingface.co/davisbro/designer-architecture",
+      "title": "🆕 Designer Architecture",
+      "name": "Designer Architecture",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "shaocr/jaznaka-flux-lora",
+      "link": "https://huggingface.co/shaocr/jaznaka-flux-lora",
+      "title": "🆕 Flux DreamBooth LoRA",
+      "name": "Flux DreamBooth LoRA",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Fihade/Kodak-Portra400-xl-LoRA",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 Kodak porta400 film",
+      "name": "Kodak porta400 film",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Indhumathy/cat_style",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 LoRA cat style",
+      "name": "LoRA cat style",
+      "media_type": "image"
+    },
+    {
       "generation_app": "bingbangboom/flux_colorscape",
       "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
       "title": "📼 AnimateDiff Lightning",

@@ -14,7 +14,7 @@ from imgur_uploader import ImgurUploader
 # Load environment variables from .env file
 load_dotenv()
 
-class HuggingfaceImageGenerator:
+class HugginsGenerator:
     def __init__(self):
         self.HF_TOKEN = os.getenv("HF_TOKEN")
         self.HF_URL = os.getenv("HF_URL")
@@ -48,11 +48,6 @@ class HuggingfaceImageGenerator:
             payload = {"inputs": prompt_with_timestamp}
             response = requests.post(url, headers=headers, json=payload)
 
-            # Debugging: print response details
-            # print(f"Response Status Code: {response.status_code}")
-            # print(f"Response Headers: {response.headers}")
-            # print(f"Response Content: {response.content[:100]}...")  # print first 100 bytes for brevity
-
             if response.status_code != 200:
                 print(f"Error: Non-200 response received: {response.status_code}")
                 return None
@@ -60,7 +55,7 @@ class HuggingfaceImageGenerator:
             image_bytes = response.content
             image_base64 = base64.b64encode(image_bytes).decode('utf-8')
 
-            print(f"Image Base64 (truncated): {image_base64[:100]}...")  # print first 100 chars for brevity
+            # print(f"Image Base64 (truncated): {image_base64[:100]}...")  # print first 100 chars for brevity
 
             image_url = self.uploader.upload_media_to_imgur(
                 image_base64, 
@@ -68,7 +63,10 @@ class HuggingfaceImageGenerator:
                 model_name,  # Title
                 prompt  # Description
             )
-            return image_url
+            if image_url:
+                return image_url
+            else:
+                return None
         except Exception as e:
             print(f"Error generating image: {e}")
             return None
@@ -76,10 +74,10 @@ class HuggingfaceImageGenerator:
 def test_huggingface_image_generator():
     try:
         # Create an instance of HuggingfaceImageGenerator
-        generator = HuggingfaceImageGenerator()
+        generator = HugginsGenerator()
         
         # Define a sample prompt and model name for testing
-        sample_model_name = "bingbangboom/flux_colorscape"
+        sample_model_name = "Indhumathy/cat_style"
         sample_prompt = "Close-up of the face of a gruff old fisherman, with deep wrinkles, wearing a yellow raincoat and a woolen hat, against a background of a stormy sea"
         
         
@@ -94,7 +92,6 @@ def test_huggingface_image_generator():
             print("Test failed! No image URL returned.")
     except Exception as e:
         print(f"Test failed with exception: {e}")
-
 
 if __name__ == "__main__":
     # Run the test

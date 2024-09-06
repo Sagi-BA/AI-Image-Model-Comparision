@@ -24,6 +24,8 @@ from utils.text_to_image.hand_drawn_cartoon_generator import HandDrawnCartoonGen
 from utils.text_to_video.animatediff_lightning_generator import AnimateDiffLightningGenerator
 from utils.imgur_uploader import ImgurUploader
 from utils.text_to_image.unsplash_generator import UnsplashGenerator
+from utils.text_to_image.huggins_generator import HugginsGenerator
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -123,8 +125,10 @@ def generate_media(prompt, model):
         # elif model['generation_app'] == 'sdxl_lightning':
         #     sdxl_lightning_generator = SDXLLightningGenerator()
         #     return sdxl_lightning_generator.generate_image(prompt)
-        else:            
-            image_url = generate_image(prompt, model['generation_app'])
+        else: 
+             huggins_generator = HugginsGenerator()
+             image_url= huggins_generator.generate_image(prompt, model['generation_app'])
+            # image_url = generate_image(prompt, model['generation_app'])
             # return image_url
     except Exception as e:
         print(f"Error generating media for {model['title']}: {str(e)}")
