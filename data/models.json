@@ -31,7 +31,7 @@
     {
       "generation_app": "black-forest-labs/FLUX.1-dev",
       "link": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
-      "title": "🆕⚡ FLUX.1-dev",
+      "title": "⚡ FLUX.1-dev",
       "name": "FLUX.1-dev",
       "media_type": "image"
     },
@@ -66,49 +66,49 @@
     {
       "generation_app": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
       "link": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
-      "title": "🆕 FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "title": "FLUX.1-dev-LoRA-blended-realistic-illustration",
       "name": "FLUX.1-dev-LoRA-blended-realistic-illustration",
       "media_type": "image"
     },
     {
       "generation_app": "multimodalart/vintage-ads-flux",
       "link": "https://huggingface.co/multimodalart/vintage-ads-flux",
-      "title": "🆕 Vintage ADS flux",
+      "title": "Vintage ADS flux",
       "name": "Vintage ADS flux",
       "media_type": "image"
     },
     {
       "generation_app": "KBlueLeaf/Kohaku-XL-Zeta",
       "link": "https://huggingface.co/KBlueLeaf/Kohaku-XL-Zeta",
-      "title": "🆕 Kohaku XL Zeta",
+      "title": "Kohaku XL Zeta",
       "name": "Kohaku XL Zeta",
       "media_type": "image"
     },
     {
       "generation_app": "multimodalart/flux-tarot-v1",
       "link": "https://huggingface.co/multimodalart/flux-tarot-v1",
-      "title": "🆕 FLUX Tarot v1",
+      "title": "FLUX Tarot v1",
       "name": "FLUX Tarot v1",
       "media_type": "image"
     },
     {
       "generation_app": "alvdansen/softpasty-flux-dev",
       "link": "https://huggingface.co/alvdansen/softpasty-flux-dev",
-      "title": "🆕 Soft Pasty (Flux Dev)",
+      "title": "Soft Pasty (Flux Dev)",
       "name": "Soft Pasty (Flux Dev)",
       "media_type": "image"
     },
     {
       "generation_app": "stabilityai/sdxl-turbo",
       "link": "https://huggingface.co/stabilityai/sdxl-turbo",
-      "title": "🆕 SDXL-Turbo Model Card",
+      "title": "SDXL-Turbo Model Card",
       "name": "SDXL-Turbo Model Card",
       "media_type": "image"
     },
     {
       "generation_app": "Toology/schismaynard-lora",
       "link": "https://huggingface.co/Toology/schismaynard-lora",
-      "title": "🆕 Schismaynard Lora",
+      "title": "Schismaynard Lora",
       "name": "Schismaynard Lora",
       "media_type": "image"
     },
@@ -117,6 +117,20 @@
       "link": "https://huggingface.co/fofr/flux-mona-lisa",
       "title": "Flux Mona Lisa",
       "name": "Flux Mona Lisa",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "markury/surrealidescent",
+      "link": "https://huggingface.co/markury/surrealidescent",
+      "title": "🆕 Flux surrealidescent",
+      "name": "Flux surrealidescent",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "animatediff_lightning",
+      "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
+      "title": "📼 AnimateDiff Lightning",
+      "name": "AnimateDiff Lightning",
       "media_type": "video"
     }
   ]

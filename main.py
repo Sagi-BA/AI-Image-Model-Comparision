@@ -76,8 +76,8 @@ def generate_image(prompt, model_name):
     if not HF_URL:
         raise ValueError("Hugging Face URL must be set in environment variables")
     
-    # Add random spaces to the prompt
-    prompt_with_spaces = add_timestamp(prompt)
+    # Add random timestamp to the prompt
+    prompt_with_timestamp = add_timestamp(prompt)
 
     url = HF_URL + model_name        
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}    
@@ -85,7 +85,7 @@ def generate_image(prompt, model_name):
     try:
         print(f"Attempting to connect to {model_name}:")
         print(url)
-        payload = ({"inputs": f"{prompt_with_spaces}"})
+        payload = ({"inputs": f"{prompt_with_timestamp}"})
         response = requests.post(url, headers=headers, json=payload)
         
         image_bytes = response.content
@@ -311,7 +311,7 @@ def get_image_data(base_path):
                 'models': []
             }
             for image_file in os.listdir(folder_path):
-                if image_file.lower().endswith(('.png', '.jpg', '.jpeg')):
+                if image_file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
                     model_name = os.path.splitext(image_file)[0]
                     image_data[folder]['models'].append({
                         'name': model_name,
