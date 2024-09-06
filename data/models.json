@@ -190,8 +190,15 @@
       "media_type": "image"
     },
     {
+      "generation_app": "markury/airplaneears-flux",
+      "link": "https://huggingface.co/markury/airplaneears-flux",
+      "title": "🆕 FLUX.1-dev Boreal",
+      "name": "FLUX.1-dev Boreal",
+      "media_type": "image"
+    },
+    {
       "generation_app": "animatediff_lightning",
-      "link": "https://huggingface.co/spaces/ByteDance/AnimateDiff-Lightning",
+      "link": "https://huggingface.co/kudzueye/boreal-flux-dev-v2",
       "title": "📼 AnimateDiff Lightning",
       "name": "AnimateDiff Lightning",
       "media_type": "video"
