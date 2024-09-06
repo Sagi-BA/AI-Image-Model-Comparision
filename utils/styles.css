@@ -224,3 +224,12 @@ p {
     font-size: 9px; /* Changed from 0.55rem */
   }
 }
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .model-name {
+    /* No rotation for mobile devices */
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: rotate(0deg);
+  }
+}
