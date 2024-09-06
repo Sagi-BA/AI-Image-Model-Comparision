@@ -168,12 +168,18 @@
       "name": "FLUX.1-dev Pprx",
       "media_type": "image"
     },
-
     {
       "generation_app": "Ethanli2024/uushirt",
       "link": "https://huggingface.co/Ethanli2024/uushirt",
       "title": "🆕 FLUX.1-dev Uushirt",
       "name": "FLUX.1-dev Uushirt",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "prostt/kitchenone",
+      "link": "https://huggingface.co/prostt/kitchenone",
+      "title": "🆕 FLUX.1-dev Kitchenone",
+      "name": "FLUX.1-dev Kitchenone",
       "media_type": "image"
     },
     {
