@@ -245,7 +245,7 @@ def image_to_base64(img):
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
-
+ 
 def add_examples_images():
     base_path = 'uploads'
     image_data = get_image_data(base_path)
