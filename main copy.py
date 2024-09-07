@@ -1,4 +1,3 @@
-import math
 import requests
 import asyncio
 import streamlit as st
@@ -20,11 +19,13 @@ from utils.counter import initialize_user_count, increment_user_count, get_user_
 from utils.TelegramSender import TelegramSender
 
 from utils.text_to_image.pollinations_generator import PollinationsGenerator
+# from utils.text_to_image.sdxl_lightning_generator import SDXLLightningGenerator
 from utils.text_to_image.hand_drawn_cartoon_generator import HandDrawnCartoonGenerator
 from utils.text_to_video.animatediff_lightning_generator import AnimateDiffLightningGenerator
 from utils.imgur_uploader import ImgurUploader
 from utils.text_to_image.unsplash_generator import UnsplashGenerator
 from utils.text_to_image.huggins_generator import HugginsGenerator
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -37,6 +38,7 @@ if 'state' not in st.session_state:
     }
 
 # Set page config for better mobile responsiveness
+# Set page config at the very beginning
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed", page_title="מחולל תמונות AI", page_icon="📷")
 
 # Read the HTML template
@@ -57,6 +59,10 @@ def get_file_type_from_url(url):
         return 'video'
     else:
         return 'image'
+    # elif path.endswith(('.jpg', '.jpeg', '.png', '.gif')):
+    #     return 'image'
+    # else:
+    #     return 'unknown'
 
 def add_timestamp(prompt):
     timestamp = int(time.time())
@@ -201,15 +207,15 @@ async def send_telegram_message_and_file(message, file_content: BytesIO):
     finally:
         await sender.close_session()
 
+def load_examples():
+    with open("data/Examples.json", "r", encoding="utf-8") as file:
+        return json.load(file)
+
 @st.cache_data
 def load_image(image_path):
     return Image.open(image_path)
 
-def image_to_base64(img):
-    buffered = BytesIO()
-    img.save(buffered, format="PNG")
-    return base64.b64encode(buffered.getvalue()).decode()
-
+@st.cache_data
 def get_image_data(base_path):
     image_data = {}
     for folder in os.listdir(base_path):
@@ -235,138 +241,46 @@ def get_image_data(base_path):
                     })
     return image_data
 
-import streamlit as st
-from PIL import Image
-import base64
-from io import BytesIO
-
 def image_to_base64(img):
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
-
+ 
 def add_examples_images():
     base_path = 'uploads'
     image_data = get_image_data(base_path)
-
-    # Custom CSS for column layout with fixed image size and vertical scroll
-    st.markdown("""
-    <style>
-    .scrollable-container {
-        max-height: 600px;
-        overflow-y: auto;
-        padding-right: 10px;
-    }
-    .image-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .image-cell {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-        width: 200px;
-        transition: all 0.3s ease;
-    }
-    .model-name {
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 5px;
-        font-size: 14px;
-        height: 40px;
-        overflow: hidden;
-        width: 200px;
-    }
-    .model-image {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-    .image-cell:hover {
-        transform: scale(1.1);
-        z-index: 1;
-    }
-    .image-cell:hover .model-image {
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
+        
     for prompt, data in image_data.items():
-        # st.header(prompt)
-        st.markdown(f"<p>{data['description']}</p>", unsafe_allow_html=True)
+        st.markdown(f"""
+            <div class="description-container">
+                <div class="description">{data['description']}</div>
+            </div>
+            """, unsafe_allow_html=True)
         
-        # Determine the number of columns (you can adjust this number)
-        num_columns = 9
-        columns = st.columns(num_columns)
-
-        # Create a scrollable container
-        st.markdown('<div class="scrollable-container">', unsafe_allow_html=True)
+        model_cols = st.columns(len(data['models']))
         
-        for i, model in enumerate(data['models']):
-            with columns[i % num_columns]:
+        for col, model in zip(model_cols, data['models']):
+            with col:
                 img = load_image(model['image_path'])
                 img_b64 = image_to_base64(img)
-
-                # Convert the relative path to an absolute URL
-                image_url = f"/app/{model['image_path']}"    
-
                 st.markdown(f"""
-                <div class="image-column">
-                    <div class="image-cell">                        
-                        <img src="data:image/png;base64,{img_b64}" 
-                             class="model-image" 
-                             loading="lazy", '_blank')"
-                             alt="{model['name']}">
-                        <div class="model-name">{model['name']}</div>
-                    </div>
+                <div class="model-container">                    
+                    <img src="data:image/png;base64,{img_b64}" 
+                            class="model-image" 
+                            onclick="alert(this.src)"
+                            alt="{model['name']}">
+                    <div class="model-name">{model['name']}</div>
                 </div>
                 """, unsafe_allow_html=True)
-
-        st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown("<hr>", unsafe_allow_html=True)
-
-    # Add modal for image enlargement
-    st.markdown("""
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
-        <div id="modalCaption"></div>
-    </div>
-
-    <script>
-    var modal = document.getElementById("imageModal");
-    var modalImg = document.getElementById("modalImage");
-    var captionText = document.getElementById("modalCaption");
-    var span = document.getElementsByClassName("close")[0];
-
-    function showModal(imgSrc, imgAlt) {
-        modal.style.display = "block";
-        modalImg.src = imgSrc;
-        captionText.innerHTML = imgAlt;
-    }
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    </script>
-    """, unsafe_allow_html=True)
-
-
-def load_examples():
-    with open("data/Examples.json", "r", encoding="utf-8") as file:
-        return json.load(file)
     
+    st.markdown("<hr>", unsafe_allow_html=True)
+
+# Add this function to load image styles
+@st.cache_data
+def load_image_styles():
+    with open("data/image_styles.json", "r", encoding="utf-8") as file:
+        return json.load(file)["styles"]
+
 async def main():
     title, image_path, footer_content = initialize()
     st.title("מחולל תמונות AI 🌟")
@@ -383,73 +297,92 @@ async def main():
     selected_example = st.selectbox(
         label="",  # Empty string for label
         options=example_titles,
-        index=None,
+        index=None,  # Set default to empty option
+        key="example_selector",
         placeholder="פרומפטים לדוגמא 👈",
     )
+    # Initialize session state for prompt if it doesn't exist
+    if 'prompt' not in st.session_state:
+        st.session_state.prompt = ""
 
-    # Display total models and new models count
+     # Update prompt if an example is selected
+    if selected_example and selected_example != "":
+        selected_example_data = next((example for example in examples if example["title"] == selected_example), None)
+        if selected_example_data:
+            st.session_state.prompt = selected_example_data["prompt"]
+
+    # 1. Text area for prompt
+    prompt = st.text_area("יש לכתוב פרומפט ליצירת תמונה...", value=st.session_state.prompt, key='prompt_input', help="יצירת תמונות")
+
+    # 2. Selectbox for style
+    image_styles = load_image_styles()
+    style_options = [style['name'] for style in image_styles]
+    selected_style = st.selectbox(
+        "בחרו סגנון תמונה 🎨",
+        options=style_options,
+        index=0,  # Set default to the first style (which should be "סגנון חופשי")
+        key='style_input'
+    )
+
+    # 3. Multiselect for models
     total_models = len(models)
     new_models = sum(1 for model in models if model['title'].startswith('🆕'))
-    # st.markdown(f"<p>Total models: {total_models} | New models: {new_models}</p>", unsafe_allow_html=True)
-
-    # Allow user to select models, with "Turbo" as default
     model_options = [model['title'] for model in models]
     default_model = "⚡ Flux.1 (Grok)"
     selected_model_titles = st.multiselect(
-        f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
+       f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
         model_options,
-        placeholder="בחרו מודלי תמונה מהרשימה 👈",
+        placeholder=f"בחרו מודלי תמונה מהרשימה ({total_models} מודלים, מתוכם {new_models} חדשים) 👈 ",
         default=[default_model] if default_model in model_options else []
     )
 
-    # Create a form for the chat input and submit button
-    with st.form(key='chat_form'):
-        prompt = ""
-        
-        # Update prompt if an example is selected
-        if selected_example:
-            selected_example_data = next((example for example in examples if example["title"] == selected_example), None)
-            if selected_example_data:
-                prompt = selected_example_data["prompt"]                
-        
-        prompt = st.text_area("יש לכתוב פרומפט לייצור תמונה...", prompt, key='prompt_input',help="יצירת תמונות")
-        submit_button = st.form_submit_button(label='Generate', use_container_width=True)
+    # Generate button
+    if st.button('Generate', use_container_width=True):
+        if prompt and selected_model_titles:
+            st.markdown(prompt)
+            selected_models = [model for model in models if model['title'] in selected_model_titles]
 
-    if submit_button and prompt and selected_model_titles:
-        st.markdown(prompt)
-        selected_models = [model for model in models if model['title'] in selected_model_titles]
-
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-
-        # Create a placeholder for the spinner
-        with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
-            html_content = generate_html(prompt, selected_models, progress_bar, status_text)
-
-            # Provide a download link for the HTML content
-            bio = BytesIO(html_content.encode('utf-8'))
+            # Process selected style
+            selected_style_prefix = next(style['prompt_prefix'] for style in image_styles if style['name'] == selected_style)
             
-            download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
-            st.markdown(download_link, unsafe_allow_html=True)
+            # Combine style prefix with the user's prompt
+            if selected_style != "סגנון חופשי" and selected_style_prefix:
+                full_prompt = f"{selected_style_prefix} {prompt}"
+            else:
+                full_prompt = prompt
 
-            # Display the HTML content directly in Streamlit
-            st.components.v1.html(html_content, height=600, scrolling=True)
+            progress_bar = st.progress(0)
+            status_text = st.empty()
 
-            # Send message to Telegram
-            try:
-                await send_telegram_message_and_file(prompt, html_content)
-            except Exception as e:
-                print(f"Failed to send to Telegram: {str(e)}")
+            # Create a placeholder for the spinner
+            with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
+                html_content = generate_html(full_prompt, selected_models, progress_bar, status_text)
 
-    # Display examples images
+                # Provide a download link for the HTML content
+                bio = BytesIO(html_content.encode('utf-8'))
+                
+                download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
+                st.markdown(download_link, unsafe_allow_html=True)
+
+                # Display the HTML content directly in Streamlit
+                st.components.v1.html(html_content, height=600, scrolling=True)
+
+                # Send message to Telegram
+                try:
+                    await send_telegram_message_and_file(full_prompt, html_content)
+                except Exception as e:
+                    print(f"Failed to send to Telegram: {str(e)}")
+
+    # dISPLAY models_comparison_template.html
+    # ADD examples.py
     add_examples_images()
-    
     # Display footer content
     st.markdown(footer_content, unsafe_allow_html=True)    
 
     # Display user count after the chatbot
     user_count = get_user_count(formatted=True)
     st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
+# Add this function to load examples
 
 if __name__ == "__main__":
     if 'counted' not in st.session_state:

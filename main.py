@@ -26,7 +26,6 @@ from utils.imgur_uploader import ImgurUploader
 from utils.text_to_image.unsplash_generator import UnsplashGenerator
 from utils.text_to_image.huggins_generator import HugginsGenerator
 
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -40,6 +39,8 @@ if 'state' not in st.session_state:
 # Set page config for better mobile responsiveness
 # Set page config at the very beginning
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed", page_title="מחולל תמונות AI", page_icon="📷")
+
+UPLOAD_FOLDER = "uploads"
 
 # Read the HTML template
 with open("template.html", "r", encoding="utf-8") as file:
@@ -232,13 +233,13 @@ def get_image_data(base_path):
                 'description': description,
                 'models': []
             }
-            for image_file in os.listdir(folder_path):
+            for image_file in os.listdir(folder_path):                
                 if image_file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
                     model_name = os.path.splitext(image_file)[0]
                     image_data[folder]['models'].append({
                         'name': model_name,
                         'image_path': os.path.join(folder_path, image_file)
-                    })
+                    })            
     return image_data
 
 def image_to_base64(img):
@@ -246,9 +247,8 @@ def image_to_base64(img):
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
  
-def add_examples_images():
-    base_path = 'uploads'
-    image_data = get_image_data(base_path)
+def add_examples_images():    
+    image_data = get_image_data(UPLOAD_FOLDER)
         
     for prompt, data in image_data.items():
         st.markdown(f"""
@@ -259,19 +259,16 @@ def add_examples_images():
         
         model_cols = st.columns(len(data['models']))
         
-        for col, model in zip(model_cols, data['models']):
+        for col, model in zip(model_cols, data['models']):            
             with col:
-                img = load_image(model['image_path'])
-                img_b64 = image_to_base64(img)
-                st.markdown(f"""
-                <div class="model-container">                    
-                    <img src="data:image/png;base64,{img_b64}" 
-                            class="model-image" 
-                            onclick="alert(this.src)"
-                            alt="{model['name']}">
-                    <div class="model-name">{model['name']}</div>
-                </div>
-                """, unsafe_allow_html=True)
+                try:
+                    image = Image.open(model['image_path'])
+                    st.markdown(f'<div class="model-container">', unsafe_allow_html=True)
+                    st.image(image, None, use_column_width=True)
+                    st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
+                    st.markdown('</div>', unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Error loading image: {model['image_path']}. Error: {str(e)}")
     
     st.markdown("<hr>", unsafe_allow_html=True)
 
