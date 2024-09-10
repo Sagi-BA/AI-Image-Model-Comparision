@@ -265,7 +265,8 @@ def add_examples_images():
                     image = Image.open(model['image_path'])
                     st.markdown(f'<div class="model-container">', unsafe_allow_html=True)
                     st.image(image, None, use_column_width=True)
-                    st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="model-name">{model["name"]}</div>', unsafe_allow_html=True)
+                    # st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
                     st.markdown('</div>', unsafe_allow_html=True)
                 except Exception as e:
                     st.error(f"Error loading image: {model['image_path']}. Error: {str(e)}")
