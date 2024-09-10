@@ -1,0 +1,159 @@
+{
+  "models": [
+    {
+      "generation_app": "replicate",
+      "link": "playgroundai/playground-v2.5-1024px-aesthetic:a45f82a1382bed5c7aeb861dac7c7d191b0fdf74d8d57c4a0e6ed7d4d0bf7d24",
+      "title": "Playground",
+      "name": "Playground",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "סגנון חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "סגנון רטרו",
+        "מינימליסטי",
+        "סגנון אימפרסיוניסטי",
+        "סגנון סטימפאנק",
+        "וופורוויב",
+        "סגנון פופ ארט",
+        "סגנון גותי"
+      ]
+    },
+    {
+      "generation_app": "replicate",
+      "link": "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+      "title": "Stable Diffusion sdxl",
+      "name": "Stable Diffusion sdxl",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "סגנון חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "אנימה",
+        "סגנון דיסני",
+        "סגנון פיקסאר",
+        "סייברפאנק",
+        "פנטזיה",
+        "סגנון רטרו",
+        "מינימליסטי",
+        "סגנון קומיקס",
+        "סגנון אימפרסיוניסטי",
+        "סגנון סטימפאנק",
+        "וופורוויב",
+        "סגנון פופ ארט",
+        "סגנון גותי"
+      ]
+    },
+    {
+      "generation_app": "replicate",
+      "link": "lucataco/juggernaut-xl-v9:bea09cf018e513cef0841719559ea86d2299e05448633ac8fe270b5d5cd6777e",
+      "title": "Juggernaut-xl v9",
+      "name": "Juggernaut-xl v9",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "סגנון חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "סגנון רטרו",
+        "מינימליסטי",
+        "סגנון אימפרסיוניסטי",
+        "סגנון סטימפאנק",
+        "וופורוויב",
+        "סגנון פופ ארט",
+        "סגנון גותי"
+      ]
+    }
+  ],
+  "styles": [
+    {
+      "name": "סגנון חופשי",
+      "prompt_prefix": "",
+      "negative_prompt": "low quality, worst quality, blurry, distorted"
+    },
+    {
+      "name": "פוטוריאליסטי",
+      "prompt_prefix": "Photorealistic image of",
+      "negative_prompt": "cartoon, anime, illustration, painting, drawing, sketch, unrealistic"
+    },
+    {
+      "name": "דיגיטל ארט",
+      "prompt_prefix": "Digital art of",
+      "negative_prompt": "traditional art techniques, photography, realism"
+    },
+    {
+      "name": "אנימה",
+      "prompt_prefix": "Anime style artwork of",
+      "negative_prompt": "photorealistic, western art style, 3D render"
+    },
+    {
+      "name": "סגנון דיסני",
+      "prompt_prefix": "Disney style illustration of",
+      "negative_prompt": "realistic, dark themes, anime, mature content"
+    },
+    {
+      "name": "סגנון פיקסאר",
+      "prompt_prefix": "Pixar style 3D rendering of",
+      "negative_prompt": "2D, hand-drawn, realistic, low quality"
+    },
+    {
+      "name": "סייברפאנק",
+      "prompt_prefix": "Cyberpunk themed image of",
+      "negative_prompt": "natural, historical, pastoral, low-tech"
+    },
+    {
+      "name": "פנטזיה",
+      "prompt_prefix": "Fantasy artwork of",
+      "negative_prompt": "modern, everyday scenes, realism"
+    },
+    {
+      "name": "סגנון רטרו",
+      "prompt_prefix": "Retro style illustration of",
+      "negative_prompt": "modern, futuristic, contemporary"
+    },
+    {
+      "name": "מינימליסטי",
+      "prompt_prefix": "Minimalist design of",
+      "negative_prompt": "complex, detailed, ornate, cluttered, baroque"
+    },
+    {
+      "name": "סגנון קומיקס",
+      "prompt_prefix": "Comic book style art of",
+      "negative_prompt": "realistic, photographic, 3D render"
+    },
+    {
+      "name": "סגנון אימפרסיוניסטי",
+      "prompt_prefix": "Impressionist painting style of",
+      "negative_prompt": "sharp details, photorealistic, digital art"
+    },
+    {
+      "name": "סגנון סטימפאנק",
+      "prompt_prefix": "Steampunk themed image of",
+      "negative_prompt": "modern technology, digital devices, futuristic electronics"
+    },
+    {
+      "name": "וופורוויב",
+      "prompt_prefix": "Vaporwave aesthetic image of",
+      "negative_prompt": "natural colors, historical accuracy, realism"
+    },
+    {
+      "name": "סגנון פופ ארט",
+      "prompt_prefix": "Pop art style image of",
+      "negative_prompt": "subtle colors, classical art, realism"
+    },
+    {
+      "name": "סגנון גותי",
+      "prompt_prefix": "Gothic style depiction of",
+      "negative_prompt": "bright colors, cheerful themes, modern aesthetics"
+    }
+  ]
+}

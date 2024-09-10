@@ -1,5 +1,5 @@
 streamlit 
-python-dotenv
+python-dotenv 
 aiohttp #This is for telegram
 requests
 jinja2
@@ -7,7 +7,7 @@ pillow
 asyncio
 gradio_client
 deep_translator
-
+replicate
 
 
 # python -m venv myenv
