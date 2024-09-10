@@ -1,24 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap");
 
 :root {
   --main-bg-color: #ffffff;
-  --secondary-bg-color: #f0f0f0;
-  --text-color: #333333;
-  --accent-color: #2980b9;
-  --glow-color: #3498db;
+  --secondary-bg-color: #dccdd4;
+  --text-color: #000000;
+  --accent-color: #4bb3fd;
+  --glow-color: #4bb3fd;
 }
 
-body {
-  font-family: "Heebo", sans-serif;
-  direction: rtl;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
+/* Streamlit-specific styles */
 .stApp {
   background-color: var(--main-bg-color);
 }
 
+body {
+  font-family: "Exo 2", sans-serif;
+  direction: rtl;
+}
+
+/* Target all text elements */
 .stMarkdown,
 .stText,
 p,
@@ -38,155 +39,197 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Heebo", sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: var(--accent-color);
-  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--glow-color);
 }
-
-h1 {
-  font-size: 36px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-
 p {
-  font-size: 18px !important;
-  margin-bottom: 20px;
+  font-size: 25px !important;
 }
 
 .user-count {
   color: var(--text-color);
   text-align: center;
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 1px;
+}
+/* Ensure button text is visible */
+.stButton > button {
+  width: 100%;
+  color: var(--main-bg-color) !important;
+  background-color: var(--accent-color) !important;
+  border-color: var(--glow-color) !important;
+  margin: 1px;
 }
 
 .stButton > button {
-  width: 100%;
-  color: white !important;
-  background-color: var(--accent-color) !important;
-  border: none !important;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 18px;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.stButton > button:hover {
-  background-color: #2471a3 !important;
-}
-
-.stFormSubmitButton > button {
-  font-family: "Heebo", sans-serif !important;
-  color: white !important;
-  background-color: #e74c3c;
+  color: white;
+  background-color: #4caf50;
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 18px;
-  margin: 10px 0;
+  border-radius: 12px;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition-duration: 0.4s;
 }
-
+.stButton > button:hover {
+  background-color: #45a049;
+}
+.stButton > button:active {
+  background-color: #3e8e41;
+}
+.stFormSubmitButton > button {
+  font-family: "Orbitron", sans-serif !important;
+  color: white !important;
+  background-color: #ff0000ac; /* Bright red */
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
 .stFormSubmitButton > button:hover {
-  background-color: #c0392b;
+  background-color: #cc0000; /* Darker red for hover state */
+}
+.stFormSubmitButton > button:active {
+  background-color: #990000; /* Even darker red for active state */
 }
 
 .description-container {
-  background-color: var(--secondary-bg-color);
+  background-color: #626262;
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 .description {
-  font-size: 18px;
-  color: var(--text-color);
+  padding: 1rem;
+  font-size: 25px;
+  color: #ffffff;
 }
-
 .model-name {
   font-weight: 500;
-  color: var(--accent-color);
-  font-size: 18px;
+  color: #464545;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 5px;
   margin-top: 10px;
-  text-align: center;
 }
-
 .model-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
 }
-
 .model-image {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
-
 .model-image:hover {
-  transform: scale(1.05);
+  transform: scale(1.6);
 }
-
-/* Improve form elements */
-.stTextInput > div > div > input,
-.stTextArea > div > div > textarea {
-  font-size: 18px !important;
-  padding: 10px !important;
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
 }
-
-.stSelectbox > div > div > div {
-  font-size: 18px !important;
-}
-
-/* Add focus styles for better visibility */
-*:focus {
-  outline: 3px solid var(--accent-color) !important;
-  outline-offset: 2px !important;
-}
-
-/* Reduce motion */
-* {
-  transition: none !important;
-  animation: none !important;
-}
-
-/* Media queries for responsiveness */
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 16px;
+@media screen and (max-width: 1125px) {
+  .button {
+    width: 225px;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 56px; /* Changed from 3.5rem */
   }
-  h2 {
-    font-size: 24px;
+}
+
+@media screen and (max-width: 990px) {
+  .button {
+    width: 223px;
   }
+
   h3 {
-    font-size: 20px;
+    font-size: 14px; /* Changed from 0.9rem */
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .button {
+    width: 242px;
   }
 
-  p,
-  .description {
-    font-size: 16px !important;
+  h1 {
+    font-size: 40px; /* Changed from 2.5rem */
   }
 
-  .stButton > button,
-  .stFormSubmitButton > button {
-    font-size: 16px;
-    padding: 10px 20px;
+  h3 {
+    font-size: 13px; /* Changed from 0.8rem */
+  }
+
+  img {
+    max-height: 540px; /* Changed from 50vh, assuming 1080px viewport height */
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .button {
+    margin-top: 5px;
+    width: 288px;
+  }
+
+  h1 {
+    font-size: 32px; /* Changed from 2rem */
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 10px; /* Changed from 0.65rem */
+  }
+
+  img {
+    max-height: 432px; /* Changed from 40vh, assuming 1080px viewport height */
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .button {
+    width: 250px;
+  }
+
+  h1 {
+    font-size: 24px; /* Changed from 1.5rem */
+  }
+
+  h3 {
+    font-size: 9px; /* Changed from 0.55rem */
+  }
+}
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .model-name {
+    /* No rotation for mobile devices */
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: rotate(0deg);
   }
 }

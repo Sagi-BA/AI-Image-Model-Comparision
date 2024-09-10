@@ -1,0 +1,229 @@
+{
+  "models": [
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "⚡ Flux.1 (Grok)",
+      "name": "flux",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "Turbo",
+      "name": "turbo",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Realism",
+      "name": "flux-realism",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Anime",
+      "name": "flux-anime",
+      "media_type": "image"
+    },
+
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux 3D",
+      "name": "flux-3d",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "stabilityai/stable-diffusion-xl-base-1.0",
+      "link": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "title": "⚡ Stable Diffusion XL 1.0-base Model Card",
+      "name": "Stable Diffusion XL 1.0-base Model Card",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "black-forest-labs/FLUX.1-schnell",
+      "link": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
+      "title": "⚡ FLUX.1-schnell",
+      "name": "FLUX.1-schnell",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "black-forest-labs/FLUX.1-dev",
+      "link": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
+      "title": "⚡ FLUX.1-dev",
+      "name": "FLUX.1-dev",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "unsplash",
+      "link": "https://unsplash.com/",
+      "title": "⚡ Unsplash",
+      "name": "Unsplash",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "alvdansen/flux-koda",
+      "link": "https://huggingface.co/alvdansen/flux-koda",
+      "title": "Koda Diffusion (Flux)",
+      "name": "Koda Diffusion (Flux)",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "hand_drawn_cartoon_style",
+      "link": "https://huggingface.co/spaces/fujohnwang/alvdansen-littletinies",
+      "title": "Hand drawn cartoon style",
+      "name": "A very classic hand drawn cartoon style",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "davisbro/half_illustration",
+      "link": "https://huggingface.co/davisbro/half_illustration",
+      "title": "half illustration",
+      "name": "half illustration",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "link": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "title": "FLUX.1-dev LoRA-blended-realistic-illustration",
+      "name": "FLUX.1-dev Realistic LoRA",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "multimodalart/vintage-ads-flux",
+      "link": "https://huggingface.co/multimodalart/vintage-ads-flux",
+      "title": "Vintage ADS flux",
+      "name": "Vintage ADS flux",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "KBlueLeaf/Kohaku-XL-Zeta",
+      "link": "https://huggingface.co/KBlueLeaf/Kohaku-XL-Zeta",
+      "title": "Kohaku XL Zeta",
+      "name": "Kohaku XL Zeta",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "multimodalart/flux-tarot-v1",
+      "link": "https://huggingface.co/multimodalart/flux-tarot-v1",
+      "title": "FLUX Tarot v1",
+      "name": "FLUX Tarot v1",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "alvdansen/softpasty-flux-dev",
+      "link": "https://huggingface.co/alvdansen/softpasty-flux-dev",
+      "title": "Soft Pasty (Flux Dev)",
+      "name": "Soft Pasty (Flux Dev)",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "stabilityai/sdxl-turbo",
+      "link": "https://huggingface.co/stabilityai/sdxl-turbo",
+      "title": "SDXL-Turbo Model Card",
+      "name": "SDXL-Turbo Model Card",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Toology/schismaynard-lora",
+      "link": "https://huggingface.co/Toology/schismaynard-lora",
+      "title": "Schismaynard Lora",
+      "name": "Schismaynard Lora",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "fofr/flux-mona-lisa",
+      "link": "https://huggingface.co/fofr/flux-mona-lisa",
+      "title": "Flux Mona Lisa",
+      "name": "Flux Mona Lisa",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "markury/surrealidescent",
+      "link": "https://huggingface.co/markury/surrealidescent",
+      "title": "🆕 Flux surrealidescent",
+      "name": "Flux surrealidescent",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "bingbangboom/flux_colorscape",
+      "link": "https://huggingface.co/bingbangboom/flux_colorscape",
+      "title": "🆕 Flux colorscape",
+      "name": "Flux colorscape",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "davisbro/designer-architecture",
+      "link": "https://huggingface.co/davisbro/designer-architecture",
+      "title": "🆕 Designer Architecture",
+      "name": "Designer Architecture",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "shaocr/jaznaka-flux-lora",
+      "link": "https://huggingface.co/shaocr/jaznaka-flux-lora",
+      "title": "🆕 Flux DreamBooth LoRA",
+      "name": "Flux DreamBooth LoRA",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Fihade/Kodak-Portra400-xl-LoRA",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 Kodak porta400 film",
+      "name": "Kodak porta400 film",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Indhumathy/cat_style",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 LoRA cat style",
+      "name": "LoRA cat style",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "rokilla/PPRX",
+      "link": "https://huggingface.co/rokilla/PPRX",
+      "title": "🆕 FLUX.1-dev Pprx",
+      "name": "FLUX.1-dev Pprx",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "Ethanli2024/uushirt",
+      "link": "https://huggingface.co/Ethanli2024/uushirt",
+      "title": "🆕 FLUX.1-dev Uushirt",
+      "name": "FLUX.1-dev Uushirt",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "prostt/kitchenone",
+      "link": "https://huggingface.co/prostt/kitchenone",
+      "title": "🆕 FLUX.1-dev Kitchenone",
+      "name": "FLUX.1-dev Kitchenone",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "markury/airplaneears-flux",
+      "link": "https://huggingface.co/markury/airplaneears-flux",
+      "title": "🆕 FLUX.1-dev airplane ears",
+      "name": "FLUX.1-dev airplane ears",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "markury/airplaneears-flux",
+      "link": "https://huggingface.co/markury/airplaneears-flux",
+      "title": "🆕 FLUX.1-dev Boreal",
+      "name": "FLUX.1-dev Boreal",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "animatediff_lightning",
+      "link": "https://huggingface.co/kudzueye/boreal-flux-dev-v2",
+      "title": "📼 AnimateDiff Lightning",
+      "name": "AnimateDiff Lightning",
+      "media_type": "video"
+    }
+  ]
+}

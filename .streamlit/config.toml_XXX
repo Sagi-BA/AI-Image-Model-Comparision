@@ -1,0 +1,15 @@
+[client] 
+showErrorDetails = false
+
+[theme]
+base="light"
+primaryColor = "#F63366"
+backgroundColor = "white"
+textColor = "black"
+
+[global]
+disableWidgetStateDuplicationWarning = false
+showWarningOnDirectExecution = true
+
+[server]
+maxUploadSize = 5
