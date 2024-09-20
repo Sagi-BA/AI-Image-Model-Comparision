@@ -278,9 +278,30 @@ def load_image_styles():
     with open("data/image_styles.json", "r", encoding="utf-8") as file:
         return json.load(file)["styles"]
 
+def hide_streamlit_header_footer():
+    hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {
+                content:'goodbye'; 
+                visibility: visible;
+                display: block;
+                position: relative;
+                #background-color: red;
+                padding: 5px;
+                top: 2px;
+            }
+            header {visibility: hidden;}
+            #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+            </style>
+            """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+
 async def main():
     title, image_path, footer_content = initialize()
     st.title("מחולל תמונות AI 🌟")
+    hide_streamlit_header_footer()
     
     # Load and display the custom expander HTML
     expander_html = load_html_file('expander.html')
