@@ -409,14 +409,22 @@ async def main():
     last_datetime_use = os.getenv("LAST_DATETIME_USE")
     st.markdown(f"<p class='last-datetime-use'>משתמש אחרון נכנס ב {last_datetime_use}</p>", unsafe_allow_html=True)
 
-    # Update LAST_DATETIME_USE on first user entry
+    # עדכון LAST_DATETIME_USE בכניסה הראשונה של המשתמש בדף
     if 'initial_visit' not in st.session_state:
-        print("LAST_DATETIME_USE")
         st.session_state.initial_visit = True
-        # Get current Israel time
+        # השגת הזמן הנוכחי לפי אזור הזמן של ישראל
         israel_time = datetime.now(pytz.timezone("Asia/Jerusalem"))
         formatted_time = israel_time.strftime("%d/%m/%Y %H:%M")
-        os.environ['LAST_DATETIME_USE']=formatted_time
+        # עדכון המשתנה ב- .env
+        os.environ['LAST_DATETIME_USE'] = formatted_time
+        with open(".env", "r") as file:
+            lines = file.readlines()
+        with open(".env", "w") as file:
+            for line in lines:
+                if line.startswith("LAST_DATETIME_USE"):
+                    file.write(f"LAST_DATETIME_USE=\"{formatted_time}\"\n")
+                else:
+                    file.write(line)
 
 # Add this function to load examples
 
