@@ -26,6 +26,9 @@ from utils.imgur_uploader import ImgurUploader
 from utils.text_to_image.unsplash_generator import UnsplashGenerator
 from utils.text_to_image.huggins_generator import HugginsGenerator
 
+from datetime import datetime
+import pytz
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -401,6 +404,20 @@ async def main():
     # Display user count after the chatbot
     user_count = get_user_count(formatted=True)
     st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
+
+    # Display LAST_DATETIME_USE value
+    last_datetime_use = os.getenv("LAST_DATETIME_USE")
+    st.markdown(f"<p class='last-datetime-use'>משתמש אחרון נכנס ב {last_datetime_use}</p>", unsafe_allow_html=True)
+
+    # Update LAST_DATETIME_USE on first user entry
+    if 'initial_visit' not in st.session_state:
+        print("LAST_DATETIME_USE")
+        st.session_state.initial_visit = True
+        # Get current Israel time
+        israel_time = datetime.now(pytz.timezone("Asia/Jerusalem"))
+        formatted_time = israel_time.strftime("%d/%m/%Y %H:%M")
+        os.environ['LAST_DATETIME_USE']=formatted_time
+
 # Add this function to load examples
 
 if __name__ == "__main__":
