@@ -60,7 +60,7 @@ def get_file_type_from_url(url):
     parsed_url = urlparse(url)
     path = parsed_url.path
     if path.endswith('.mp4'):
-        return 'video'
+        return 'video' 
     else:
         return 'image'
     # elif path.endswith(('.jpg', '.jpeg', '.png', '.gif')):
