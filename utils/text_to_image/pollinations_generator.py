@@ -30,7 +30,8 @@ class PollinationsGenerator:
     def __init__(self):
         self.pollinations_url = "https://image.pollinations.ai/prompt/{prompt}?model={model}&width=1280&height=720&seed=42&nologo=true&enhance=true"
 
-    def generate_image(self, prompt, model_name):
+    def generate_image(self, prompt, model_name="flux"):
+        
         encoded_prompt = quote(prompt)
         url = self.pollinations_url.format(prompt=encoded_prompt, model=model_name)
         
@@ -42,6 +43,7 @@ class PollinationsGenerator:
                  model_name,  # Title
                  prompt  # Description
             )
+            
             return image_url 
         except requests.exceptions.RequestException as e:
             print(f"Error generating image with Pollinations: {e}")

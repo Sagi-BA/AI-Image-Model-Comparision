@@ -5,44 +5,88 @@
       "prompt_prefix": ""
     },
     {
-      "name": "ריאליסטי",
-      "prompt_prefix": "תמונה ריאליסטית של"
+      "name": "פוטוריאליסטי",
+      "prompt_prefix": "photorealistic image of"
     },
     {
-      "name": "מצויר",
-      "prompt_prefix": "איור מצויר של"
+      "name": "דיגיטל ארט",
+      "prompt_prefix": "digital art of"
     },
     {
-      "name": "צבעי מים",
-      "prompt_prefix": "ציור בצבעי מים של"
+      "name": "אנימה",
+      "prompt_prefix": "anime style artwork of"
     },
     {
-      "name": "סקיצה",
-      "prompt_prefix": "סקיצה בעיפרון של"
+      "name": "דיסני",
+      "prompt_prefix": "Disney style illustration of"
     },
     {
-      "name": "פופ ארט",
-      "prompt_prefix": "תמונה בסגנון פופ ארט של"
+      "name": "פיקסאר",
+      "prompt_prefix": "Pixar style 3D rendering of"
     },
     {
-      "name": "אבסטרקטי",
-      "prompt_prefix": "יצירה אבסטרקטית המייצגת"
+      "name": "סייברפאנק",
+      "prompt_prefix": "cyberpunk themed image of"
     },
     {
-      "name": "אימפרסיוניסטי",
-      "prompt_prefix": "ציור אימפרסיוניסטי של"
+      "name": "פנטזיה",
+      "prompt_prefix": "fantasy artwork of"
     },
     {
-      "name": "פיקסל ארט",
-      "prompt_prefix": "תמונת פיקסל ארט של"
-    },
-    {
-      "name": "סוריאליסטי",
-      "prompt_prefix": "תמונה סוריאליסטית המתארת"
+      "name": "רטרו",
+      "prompt_prefix": "retro style illustration of"
     },
     {
       "name": "מינימליסטי",
-      "prompt_prefix": "עיצוב מינימליסטי של"
+      "prompt_prefix": "minimalist design of"
+    },
+    {
+      "name": "קומיקס",
+      "prompt_prefix": "comic book style art of"
+    },
+    {
+      "name": "אימפרסיוניסטי",
+      "prompt_prefix": "impressionist painting style of"
+    },
+    {
+      "name": "סטימפאנק",
+      "prompt_prefix": "steampunk themed image of"
+    },
+    {
+      "name": "וופורוויב",
+      "prompt_prefix": "vaporwave aesthetic image of"
+    },
+    {
+      "name": "פופ ארט",
+      "prompt_prefix": "pop art style image of"
+    },
+    {
+      "name": "גותי",
+      "prompt_prefix": "gothic style depiction of"
+    },
+    {
+      "name": "מצויר",
+      "prompt_prefix": "hand drawn illustration of"
+    },
+    {
+      "name": "צבעי מים",
+      "prompt_prefix": "watercolor painting of"
+    },
+    {
+      "name": "סקיצה",
+      "prompt_prefix": "pencil sketch of"
+    },
+    {
+      "name": "אבסטרקטי",
+      "prompt_prefix": "abstract artwork representing"
+    },
+    {
+      "name": "פיקסל ארט",
+      "prompt_prefix": "pixel art of"
+    },
+    {
+      "name": "סוריאליסטי",
+      "prompt_prefix": "surrealist image depicting"
     }
   ]
 }
