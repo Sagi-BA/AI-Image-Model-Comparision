@@ -267,7 +267,7 @@ def add_examples_images():
                 try:
                     image = Image.open(model['image_path'])
                     st.markdown(f'<div class="model-container">', unsafe_allow_html=True)
-                    st.image(image, None, use_column_width=True)
+                    st.image(image, None, use_container_width=True)
                     st.markdown(f'<div class="model-name">{model["name"]}</div>', unsafe_allow_html=True)
                     # st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
                     st.markdown('</div>', unsafe_allow_html=True)
@@ -317,7 +317,7 @@ async def main():
     # Create a selectbox for examples with a label
     example_titles = [""] + [example["title"] for example in examples]
     selected_example = st.selectbox(
-        label="",  # Empty string for label
+        label="פרומפטים לדוגמא",  # Empty string for label
         options=example_titles,
         index=None,  # Set default to empty option
         key="example_selector",
@@ -359,7 +359,7 @@ async def main():
     )
 
     # Generate button
-    if st.button('Generate', use_container_width=True):
+    if st.button('יצירת תמונה', use_container_width=True):
         if prompt and selected_model_titles:
             st.markdown(prompt)
             selected_models = [model for model in models if model['title'] in selected_model_titles]
@@ -394,6 +394,11 @@ async def main():
                     await send_telegram_message_and_file(full_prompt, html_content)
                 except Exception as e:
                     print(f"Failed to send to Telegram: {str(e)}")
+
+                # Add balloons celebration after successful generation
+                st.balloons()
+                # You can also add a success message
+                st.success("התמונה נוצרה בהצלחה! 🎉")
 
     # dISPLAY models_comparison_template.html
     # ADD examples.py
