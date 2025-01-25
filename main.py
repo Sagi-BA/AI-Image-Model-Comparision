@@ -218,7 +218,7 @@ async def main():
     )
 
     # Set default model to use PollinationsGenerator
-    default_model = "⚡ Pollinations"    
+    default_model = "⚡ Pollinations"        
 
     # Generate button
     if st.button('יצירת תמונה', use_container_width=True):
@@ -235,14 +235,16 @@ async def main():
             else:
                 full_prompt = english_prompt
 
+            print("sagi")
+
             # Create a placeholder for the spinner
-            with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):                
-
+            with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):   
                 try:
-                    image_url = f"https://pollinations.ai/p/{full_prompt}?width=1280&height=720&seed=42&nologo=true&enhance=true"
-
-                    encoded_prompt = quote(prompt)
-                    image_url = image_url.format(prompt=encoded_prompt)
+                    # First encode the prompt
+                    encoded_prompt = quote(full_prompt)
+                    # Construct the URL with the encoded prompt
+                    image_url = f"https://pollinations.ai/p/{encoded_prompt}?width=1280&height=720&seed=42&nologo=true&enhance=true"
+                    print(f"Image URL: {image_url}")
 
                     # Fetching the image from the URL
                     response = requests.get(image_url)
@@ -251,15 +253,17 @@ async def main():
                         if image:
                             # Display the generated image
                             st.image(image, use_container_width=True)
-                    
+                            
+                            # Add balloons celebration after successful generation
+                            st.balloons()
+                            st.success("התמונה נוצרה בהצלחה! 🎉")
+                    else:
+                        st.error(f"Error: Server returned status code {response.status_code}")
+                        print(f"Server response: {response.text}")
+                        
                 except Exception as e:
                     print(f"Error generating media: {str(e)}")
                     st.error(f"Error generating image: {str(e)}")
-                    return None, None
-
-                # Add balloons celebration after successful generation
-                st.balloons()
-                st.success("התמונה נוצרה בהצלחה! 🎉")
 
     # Add examples images
     add_examples_images()
