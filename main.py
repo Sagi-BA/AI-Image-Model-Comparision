@@ -29,7 +29,6 @@ load_dotenv()
 # Initialize session state
 if 'state' not in st.session_state:
     st.session_state.state = {
-        'telegram_sender': TelegramSender(),
         'counted': False,
     }
 
@@ -46,6 +45,24 @@ with open("template.html", "r", encoding="utf-8") as file:
 with open("data/models.json", "r", encoding="utf-8") as file:
     models_data = json.load(file)
     models = models_data["models"]
+
+async def send_telegram_image(image_bytes: BytesIO, caption: str):
+    """Helper function to send image to Telegram"""
+    try:
+        # Create a new TelegramSender instance for each send
+        telegram_sender = TelegramSender()
+        if await telegram_sender.verify_bot_token():
+            # Reset the bytes position
+            image_bytes.seek(0)
+            await telegram_sender.send_photo_bytes(image_bytes, caption=caption)
+        else:
+            raise Exception("Bot token verification failed")
+    except Exception as e:
+        print(f"Failed to send to Telegram: {str(e)}")
+        raise
+    finally:
+        await telegram_sender.close_session()
+
 
 def get_file_type_from_url(url):
     if url is None:
@@ -260,12 +277,13 @@ async def main():
                                 # Reset the bytes position
                                 image_bytes.seek(0)
                                 # Create telegram message
+                                # Create telegram message
                                 telegram_caption = f"New image generated\nPrompt: {prompt}\nStyle: {selected_style}"
-                                await st.session_state.state['telegram_sender'].send_photo_bytes(
-                                    image_bytes,
-                                    caption=telegram_caption
-                                )
-                                # print("Image sent to Telegram")
+                                # Create a new BytesIO for Telegram
+                                telegram_bytes = BytesIO(response.content)
+                                await send_telegram_image(telegram_bytes, telegram_caption)
+                                # print("Image sent to Telegram successfully")
+                                
                             except Exception as telegram_error:
                                 print(f"Failed to send to Telegram: {str(telegram_error)}")
                                 # Continue with display even if Telegram fails
