@@ -235,8 +235,6 @@ async def main():
             else:
                 full_prompt = english_prompt
 
-            print("sagi")
-
             # Create a placeholder for the spinner
             with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):   
                 try:
@@ -249,13 +247,34 @@ async def main():
                     # Fetching the image from the URL
                     response = requests.get(image_url)
                     if response.status_code == 200:
-                        image = Image.open(BytesIO(response.content))
+                        # Create BytesIO object for the image
+                        image_bytes = BytesIO(response.content)
+                        # Create another BytesIO for display
+                        display_bytes = BytesIO(response.content)
+                        
+                        # Open image for display
+                        image = Image.open(display_bytes)
                         if image:
+                            # Send to Telegram
+                            try:
+                                # Reset the bytes position
+                                image_bytes.seek(0)
+                                # Create telegram message
+                                telegram_caption = f"New image generated\nPrompt: {prompt}\nStyle: {selected_style}"
+                                await st.session_state.state['telegram_sender'].send_photo_bytes(
+                                    image_bytes,
+                                    caption=telegram_caption
+                                )
+                                # print("Image sent to Telegram")
+                            except Exception as telegram_error:
+                                print(f"Failed to send to Telegram: {str(telegram_error)}")
+                                # Continue with display even if Telegram fails
+                            
+                            # Show balloons first
+                            st.balloons()
+                            
                             # Display the generated image
                             st.image(image, use_container_width=True)
-                            
-                            # Add balloons celebration after successful generation
-                            st.balloons()
                             st.success("התמונה נוצרה בהצלחה! 🎉")
                     else:
                         st.error(f"Error: Server returned status code {response.status_code}")

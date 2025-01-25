@@ -43,6 +43,18 @@ class TelegramSender:
             return True
         return False
 
+    async def send_photo_bytes(self, photo_bytes: BytesIO, caption: Optional[str] = None) -> None:
+        data = aiohttp.FormData()
+        data.add_field("chat_id", self.chat_id)
+        data.add_field("photo", photo_bytes, filename="generated_image.png", content_type="image/png")
+        if caption:
+            data.add_field("caption", caption)
+
+        result = await self._make_request('post', 'sendPhoto', data=data)
+        if result:
+            print("Photo sent successfully to Telegram")
+        return result
+
     async def send_message(self, text: str, title: Optional[str] = None) -> None:
         params = {
             "chat_id": self.chat_id,
