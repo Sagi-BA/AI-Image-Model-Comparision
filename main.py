@@ -19,6 +19,7 @@ from utils.init import initialize
 from utils.counter import increment_user_count, get_user_count
 from utils.TelegramSender import TelegramSender
 from utils.text_to_image.pollinations_generator import PollinationsGenerator
+from utils.greenapi import WhatsAppSender
 
 from datetime import datetime
 import pytz
@@ -63,6 +64,33 @@ async def send_telegram_image(image_bytes: BytesIO, caption: str):
     finally:
         await telegram_sender.close_session()
 
+async def send_whatsapp_image(image_bytes: BytesIO, caption: str):
+    """Helper function to send image to WhatsApp"""
+    try:
+        # Create WhatsApp sender instance
+        whatsapp_sender = WhatsAppSender()
+        
+        # Get WhatsApp phone number from environment variables
+        whatsapp_phone = os.getenv("WHATSAPP_PHONE")
+        if not whatsapp_phone:
+            raise Exception("WhatsApp phone number not configured in environment variables")
+            
+        # Reset bytes position for WhatsApp
+        image_bytes.seek(0)
+        
+        # Send to WhatsApp
+        success = whatsapp_sender.send_image_from_bytesio(
+            whatsapp_phone,
+            image_bytes,
+            caption=caption
+        )
+        
+        if not success:
+            raise Exception("Failed to send image via WhatsApp")
+            
+    except Exception as e:
+        print(f"Failed to send to WhatsApp: {str(e)}")
+        raise
 
 def get_file_type_from_url(url):
     if url is None:
@@ -283,6 +311,10 @@ async def main():
                                 telegram_bytes = BytesIO(response.content)
                                 await send_telegram_image(telegram_bytes, telegram_caption)
                                 # print("Image sent to Telegram successfully")
+                                
+                                # Create a new BytesIO for WhatsApp
+                                whatsapp_bytes = BytesIO(response.content)
+                                await send_whatsapp_image(whatsapp_bytes, telegram_caption)
                                 
                             except Exception as telegram_error:
                                 print(f"Failed to send to Telegram: {str(telegram_error)}")
