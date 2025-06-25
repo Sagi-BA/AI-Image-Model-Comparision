@@ -1,0 +1,519 @@
+{
+  "models": [
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "⚡ Flux.1 (Grok)",
+      "name": "flux",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "Turbo",
+      "name": "turbo",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Realism",
+      "name": "flux-realism",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Anime",
+      "name": "flux-anime",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "אנימה", "דיגיטל ארט", "פנטזיה", "קומיקס"]
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux 3D",
+      "name": "flux-3d",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "פיקסאר",
+        "סייברפאנק",
+        "פנטזיה"
+      ]
+    },
+    {
+      "generation_app": "stabilityai/stable-diffusion-xl-base-1.0",
+      "link": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "title": "⚡ Stable Diffusion XL 1.0-base Model Card",
+      "name": "Stable Diffusion XL 1.0-base Model Card",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "אנימה",
+        "דיסני",
+        "פיקסאר",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "קומיקס",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "black-forest-labs/FLUX.1-schnell",
+      "link": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
+      "title": "⚡ FLUX.1-schnell",
+      "name": "FLUX.1-schnell",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "black-forest-labs/FLUX.1-dev",
+      "link": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
+      "title": "⚡ FLUX.1-dev",
+      "name": "FLUX.1-dev",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "unsplash",
+      "link": "https://unsplash.com/",
+      "title": "⚡ Unsplash",
+      "name": "Unsplash",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": false,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי"]
+    },
+    {
+      "generation_app": "alvdansen/flux-koda",
+      "link": "https://huggingface.co/alvdansen/flux-koda",
+      "title": "Koda Diffusion (Flux)",
+      "name": "Koda Diffusion (Flux)",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו"
+      ]
+    },
+    {
+      "generation_app": "hand_drawn_cartoon_style",
+      "link": "https://huggingface.co/spaces/fujohnwang/alvdansen-littletinies",
+      "title": "Hand drawn cartoon style",
+      "name": "A very classic hand drawn cartoon style",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, photorealistic",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "דיסני", "קומיקס"]
+    },
+    {
+      "generation_app": "davisbro/half_illustration",
+      "link": "https://huggingface.co/davisbro/half_illustration",
+      "title": "half illustration",
+      "name": "half illustration",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, fully realistic",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "דיגיטל ארט", "קומיקס"]
+    },
+    {
+      "generation_app": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "link": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "title": "FLUX.1-dev LoRA-blended-realistic-illustration",
+      "name": "FLUX.1-dev Realistic LoRA",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "דיגיטל ארט"]
+    },
+    {
+      "generation_app": "multimodalart/vintage-ads-flux",
+      "link": "https://huggingface.co/multimodalart/vintage-ads-flux",
+      "title": "Vintage ADS flux",
+      "name": "Vintage ADS flux",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, modern style",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "רטרו", "פופ ארט"]
+    },
+    {
+      "generation_app": "KBlueLeaf/Kohaku-XL-Zeta",
+      "link": "https://huggingface.co/KBlueLeaf/Kohaku-XL-Zeta",
+      "title": "Kohaku XL Zeta",
+      "name": "Kohaku XL Zeta",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "אנימה", "דיגיטל ארט"]
+    },
+    {
+      "generation_app": "multimodalart/flux-tarot-v1",
+      "link": "https://huggingface.co/multimodalart/flux-tarot-v1",
+      "title": "FLUX Tarot v1",
+      "name": "FLUX Tarot v1",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, modern style",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פנטזיה", "רטרו"]
+    },
+    {
+      "generation_app": "alvdansen/softpasty-flux-dev",
+      "link": "https://huggingface.co/alvdansen/softpasty-flux-dev",
+      "title": "Soft Pasty (Flux Dev)",
+      "name": "Soft Pasty (Flux Dev)",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, sharp details",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "דיגיטל ארט", "מינימליסטי"]
+    },
+    {
+      "generation_app": "stabilityai/sdxl-turbo",
+      "link": "https://huggingface.co/stabilityai/sdxl-turbo",
+      "title": "SDXL-Turbo Model Card",
+      "name": "SDXL-Turbo Model Card",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": [
+        "חופשי",
+        "פוטוריאליסטי",
+        "דיגיטל ארט",
+        "אנימה",
+        "דיסני",
+        "פיקסאר",
+        "סייברפאנק",
+        "פנטזיה",
+        "רטרו",
+        "מינימליסטי",
+        "קומיקס",
+        "אימפרסיוניסטי",
+        "סטימפאנק",
+        "וופורוויב",
+        "פופ ארט",
+        "גותי"
+      ]
+    },
+    {
+      "generation_app": "Toology/schismaynard-lora",
+      "link": "https://huggingface.co/Toology/schismaynard-lora",
+      "title": "Schismaynard Lora",
+      "name": "Schismaynard Lora",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "דיגיטל ארט", "פנטזיה", "גותי"]
+    },
+    {
+      "generation_app": "fofr/flux-mona-lisa",
+      "link": "https://huggingface.co/fofr/flux-mona-lisa",
+      "title": "Flux Mona Lisa",
+      "name": "Flux Mona Lisa",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, modern style",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "רטרו", "אימפרסיוניסטי"]
+    },
+    {
+      "generation_app": "markury/surrealidescent",
+      "link": "https://huggingface.co/markury/surrealidescent",
+      "title": "🆕 Flux surrealidescent",
+      "name": "Flux surrealidescent",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, realistic",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פנטזיה", "גותי", "אימפרסיוניסטי"]
+    },
+    {
+      "generation_app": "bingbangboom/flux_colorscape",
+      "link": "https://huggingface.co/bingbangboom/flux_colorscape",
+      "title": "🆕 Flux colorscape",
+      "name": "Flux colorscape",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, monochrome",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "דיגיטל ארט", "פופ ארט", "וופורוויב"]
+    },
+    {
+      "generation_app": "davisbro/designer-architecture",
+      "link": "https://huggingface.co/davisbro/designer-architecture",
+      "title": "🆕 Designer Architecture",
+      "name": "Designer Architecture",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, traditional architecture",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "מינימליסטי", "סייברפאנק"]
+    },
+    {
+      "generation_app": "shaocr/jaznaka-flux-lora",
+      "link": "https://huggingface.co/shaocr/jaznaka-flux-lora",
+      "title": "🆕 Flux DreamBooth LoRA",
+      "name": "Flux DreamBooth LoRA",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "דיגיטל ארט", "פנטזיה"]
+    },
+    {
+      "generation_app": "Fihade/Kodak-Portra400-xl-LoRA",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 Kodak porta400 film",
+      "name": "Kodak porta400 film",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, digital, sharp",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "רטרו", "פוטוריאליסטי"]
+    },
+    {
+      "generation_app": "Indhumathy/cat_style",
+      "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
+      "title": "🆕 LoRA cat style",
+      "name": "LoRA cat style",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, human, person",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "קומיקס", "אנימה"]
+    },
+    {
+      "generation_app": "rokilla/PPRX",
+      "link": "https://huggingface.co/rokilla/PPRX",
+      "title": "🆕 FLUX.1-dev Pprx",
+      "name": "FLUX.1-dev Pprx",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "דיגיטל ארט"]
+    },
+    {
+      "generation_app": "Ethanli2024/uushirt",
+      "link": "https://huggingface.co/Ethanli2024/uushirt",
+      "title": "🆕 FLUX.1-dev Uushirt",
+      "name": "FLUX.1-dev Uushirt",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, complex design",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "מינימליסטי", "פופ ארט"]
+    },
+    {
+      "generation_app": "prostt/kitchenone",
+      "link": "https://huggingface.co/prostt/kitchenone",
+      "title": "🆕 FLUX.1-dev Kitchenone",
+      "name": "FLUX.1-dev Kitchenone",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, messy kitchen",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "מינימליסטי"]
+    },
+    {
+      "generation_app": "markury/airplaneears-flux",
+      "link": "https://huggingface.co/markury/airplaneears-flux",
+      "title": "🆕 FLUX.1-dev airplane ears",
+      "name": "FLUX.1-dev airplane ears",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, human ears",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "אנימה", "קומיקס"]
+    },
+    {
+      "generation_app": "kudzueye/boreal-flux-dev-v2",
+      "link": "https://huggingface.co/kudzueye/boreal-flux-dev-v2",
+      "title": "🆕 FLUX.1-dev Boreal",
+      "name": "FLUX.1-dev Boreal",
+      "media_type": "image",
+      "negative_prompt": "low quality, worst quality, tropical",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "פוטוריאליסטי", "דיגיטל ארט"]
+    },
+    {
+      "generation_app": "animatediff_lightning",
+      "link": "https://huggingface.co/kudzueye/boreal-flux-dev-v2",
+      "title": "📼 AnimateDiff Lightning",
+      "name": "AnimateDiff Lightning",
+      "media_type": "video",
+      "negative_prompt": "low quality, worst quality, static image",
+      "supports_negative_prompt": true,
+      "compatible_styles": ["חופשי", "אנימה", "קומיקס"]
+    }
+  ],
+  "styles": [
+    {
+      "name": "חופשי",
+      "prompt_prefix": "",
+      "negative_prompt": "low quality, worst quality, blurry, distorted"
+    },
+    {
+      "name": "פוטוריאליסטי",
+      "prompt_prefix": "Photorealistic image of",
+      "negative_prompt": "cartoon, anime, illustration, painting, drawing, sketch, unrealistic"
+    },
+    {
+      "name": "דיגיטל ארט",
+      "prompt_prefix": "Digital art of",
+      "negative_prompt": "traditional art techniques, photography, realism"
+    },
+    {
+      "name": "אנימה",
+      "prompt_prefix": "Anime style artwork of",
+      "negative_prompt": "photorealistic, western art style, 3D render"
+    },
+    {
+      "name": "דיסני",
+      "prompt_prefix": "Disney style illustration of",
+      "negative_prompt": "realistic, dark themes, anime, mature content"
+    },
+    {
+      "name": "פיקסאר",
+      "prompt_prefix": "Pixar style 3D rendering of",
+      "negative_prompt": "2D, hand-drawn, realistic, low quality"
+    },
+    {
+      "name": "סייברפאנק",
+      "prompt_prefix": "Cyberpunk themed image of",
+      "negative_prompt": "natural, historical, pastoral, low-tech"
+    },
+    {
+      "name": "פנטזיה",
+      "prompt_prefix": "Fantasy artwork of",
+      "negative_prompt": "modern, everyday scenes, realism"
+    },
+    {
+      "name": "רטרו",
+      "prompt_prefix": "Retro style illustration of",
+      "negative_prompt": "modern, futuristic, contemporary"
+    },
+    {
+      "name": "מינימליסטי",
+      "prompt_prefix": "Minimalist design of",
+      "negative_prompt": "complex, detailed, ornate, cluttered, baroque"
+    },
+    {
+      "name": "קומיקס",
+      "prompt_prefix": "Comic book style art of",
+      "negative_prompt": "realistic, photographic, 3D render"
+    },
+    {
+      "name": "אימפרסיוניסטי",
+      "prompt_prefix": "Impressionist painting style of",
+      "negative_prompt": "sharp details, photorealistic, digital art"
+    },
+    {
+      "name": "סטימפאנק",
+      "prompt_prefix": "Steampunk themed image of",
+      "negative_prompt": "modern technology, digital devices, futuristic electronics"
+    },
+    {
+      "name": "וופורוויב",
+      "prompt_prefix": "Vaporwave aesthetic image of",
+      "negative_prompt": "natural colors, historical accuracy, realism"
+    },
+    {
+      "name": "פופ ארט",
+      "prompt_prefix": "Pop art style image of",
+      "negative_prompt": "subtle colors, classical art, realism"
+    },
+    {
+      "name": "גותי",
+      "prompt_prefix": "Gothic style depiction of",
+      "negative_prompt": "bright colors, cheerful themes, modern aesthetics"
+    }
+  ]
+}

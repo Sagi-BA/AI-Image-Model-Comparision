@@ -26,7 +26,6 @@ from utils.imgur_uploader import ImgurUploader
 from utils.text_to_image.unsplash_generator import UnsplashGenerator
 from utils.text_to_image.huggins_generator import HugginsGenerator
 
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -41,14 +40,20 @@ if 'state' not in st.session_state:
 # Set page config at the very beginning
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed", page_title="מחולל תמונות AI", page_icon="📷")
 
+UPLOAD_FOLDER = "uploads"
+
 # Read the HTML template
 with open("template.html", "r", encoding="utf-8") as file:
     html_template = file.read()
 
-# Read models from JSON file
-with open("data/models.json", "r", encoding="utf-8") as file:
-    models_data = json.load(file)
-    models = models_data["models"]
+# Read models and styles from JSON file
+@st.cache_data
+def load_models_and_styles():
+    with open("data/models_and_styles.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+        return data["models"], data["styles"]
+
+models, styles = load_models_and_styles()
 
 def get_file_type_from_url(url):
     if url is None:
@@ -108,57 +113,51 @@ def generate_image(prompt, model_name):
         print(f"Error generating image: {e}")
         return None
     
-def generate_media(prompt, model):
+def generate_media(prompt, style, model):
     try:
+        if model.get('supports_negative_prompt', False):
+            combined_negative_prompt = f"{model['negative_prompt']}, {style['negative_prompt']}".strip(', ')
+
         if model['generation_app'] == 'pollinations':
             pollinations_generator = PollinationsGenerator()
-            image_url= pollinations_generator.generate_image(prompt, model['name'])        
+            image_url = pollinations_generator.generate_image(prompt, model['name'], combined_negative_prompt)
         elif model['generation_app'] == 'hand_drawn_cartoon_style':
             hand_drawn_cartoon_generator = HandDrawnCartoonGenerator()
-            image_url= hand_drawn_cartoon_generator.generate_image(prompt)
+            image_url = hand_drawn_cartoon_generator.generate_image(prompt, combined_negative_prompt)
         elif model['generation_app'] == 'animatediff_lightning':
             animatediff_lightning_generator = AnimateDiffLightningGenerator()
-            image_url= animatediff_lightning_generator.generate_image(prompt)    
+            image_url = animatediff_lightning_generator.generate_image(prompt, combined_negative_prompt)
         elif model['generation_app'] == 'unsplash':
             unsplash_generator = UnsplashGenerator()
-            image_url= unsplash_generator.generate_image(prompt)         
-        # elif model['generation_app'] == 'sdxl_lightning':
-        #     sdxl_lightning_generator = SDXLLightningGenerator()
-        #     return sdxl_lightning_generator.generate_image(prompt)
-        else: 
-             huggins_generator = HugginsGenerator()
-             image_url= huggins_generator.generate_image(prompt, model['generation_app'])
-            # image_url = generate_image(prompt, model['generation_app'])
-            # return image_url
+            image_url = unsplash_generator.generate_image(prompt)  # Unsplash doesn't support negative prompts
+        else:
+            huggins_generator = HugginsGenerator()
+            image_url = huggins_generator.generate_image(prompt, model['generation_app'], combined_negative_prompt)
+
+        print(f"Generated media URL for {model['title']}: {image_url}")
+        return image_url
     except Exception as e:
         print(f"Error generating media for {model['title']}: {str(e)}")
         return None
-    
-    # Remove 'https://' from the media_url if it exists
-    # if 'https://' in image_url:
-    #     image_url = image_url.replace('https://', '')
-    
-    print(f"Image generation for {model['generation_app']} is not implemented")
-    return image_url
 
-def generate_html(prompt, selected_models, progress_bar, status_text):
+def generate_html(prompt, style, selected_models, progress_bar, status_text):
     template = Template(html_template)    
-    english_prompt = translate_to_hebrew(prompt)
+    english_prompt = translate_to_english(prompt)
 
-    print(english_prompt)
+    print(f"Original Prompt: {prompt}")
+    print(f"English Prompt: {english_prompt}")
+    print(f"Style: {style['name']}")
 
     total_models = len(selected_models)
     for i, model in enumerate(selected_models, 1):
         status_text.text(f"מייצר תמונה במודל: {model['title']} ({i}/{total_models})")
-        model['media_url'] = generate_media(english_prompt, model)
+        
+        full_prompt = f"{style['prompt_prefix']} {english_prompt}".strip()
+        model['media_url'] = generate_media(full_prompt, style, model)
         model['media_type'] = get_file_type_from_url(model['media_url'])
-        if model['media_url']:
-            print(f"Generated media URL for {model['title']}: {model['media_url']}")
-        else:
-            print(f"Failed to generate media for {model['title']}")
         progress_bar.progress(i / total_models)
-
-    html_content = template.render(prompt=prompt, models=selected_models)
+    
+    html_content = template.render(prompt=prompt, style=style['name'], models=selected_models)
     
     return html_content
 
@@ -178,12 +177,12 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
 def get_translator():
     return GoogleTranslator(source='auto', target='en')
 
-def translate_to_hebrew(text):
+def translate_to_english(text):
     try:
         translator = get_translator()
         return translator.translate(text)
     except Exception as e:
-        st.error(f"שגיאה בתרגום: {str(e)}")
+        st.error(f"Translation error: {str(e)}")
         return text
                 
 def load_html_file(file_name):
@@ -232,13 +231,13 @@ def get_image_data(base_path):
                 'description': description,
                 'models': []
             }
-            for image_file in os.listdir(folder_path):
+            for image_file in os.listdir(folder_path):                
                 if image_file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
                     model_name = os.path.splitext(image_file)[0]
                     image_data[folder]['models'].append({
                         'name': model_name,
                         'image_path': os.path.join(folder_path, image_file)
-                    })
+                    })            
     return image_data
 
 def image_to_base64(img):
@@ -246,9 +245,8 @@ def image_to_base64(img):
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
  
-def add_examples_images():
-    base_path = 'uploads'
-    image_data = get_image_data(base_path)
+def add_examples_images():    
+    image_data = get_image_data(UPLOAD_FOLDER)
         
     for prompt, data in image_data.items():
         st.markdown(f"""
@@ -259,19 +257,17 @@ def add_examples_images():
         
         model_cols = st.columns(len(data['models']))
         
-        for col, model in zip(model_cols, data['models']):
+        for col, model in zip(model_cols, data['models']):            
             with col:
-                img = load_image(model['image_path'])
-                img_b64 = image_to_base64(img)
-                st.markdown(f"""
-                <div class="model-container">                    
-                    <img src="data:image/png;base64,{img_b64}" 
-                            class="model-image" 
-                            onclick="alert(this.src)"
-                            alt="{model['name']}">
-                    <div class="model-name">{model['name']}</div>
-                </div>
-                """, unsafe_allow_html=True)
+                try:
+                    image = Image.open(model['image_path'])
+                    st.markdown(f'<div class="model-container">', unsafe_allow_html=True)
+                    st.image(image, None, use_column_width=True)
+                    st.markdown(f'<div class="model-name">{model["name"]}</div>', unsafe_allow_html=True)
+                    # st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
+                    st.markdown('</div>', unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Error loading image: {model['image_path']}. Error: {str(e)}")
     
     st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -280,6 +276,30 @@ def add_examples_images():
 def load_image_styles():
     with open("data/image_styles.json", "r", encoding="utf-8") as file:
         return json.load(file)["styles"]
+
+def get_compatible_styles(selected_models, all_styles):
+    if not selected_models:
+        return all_styles  # If no models selected, show all styles
+    
+    compatible_styles = set()
+    for model in selected_models:
+        model_compatible_styles = set(model.get('compatible_styles', []))
+        if not compatible_styles:
+            compatible_styles = model_compatible_styles
+        else:
+            compatible_styles.intersection_update(model_compatible_styles)
+    
+    # Always include "סגנון חופשי" if it exists
+    free_style = next((style for style in all_styles if style['name'] == "סגנון חופשי"), None)
+    if free_style:
+        compatible_styles.add("סגנון חופשי")
+    
+    # If no compatible styles found, return all styles
+    if not compatible_styles:
+        print("No compatible styles found, returning all styles")
+        return all_styles
+    
+    return [style for style in all_styles if style['name'] in compatible_styles]
 
 async def main():
     title, image_path, footer_content = initialize()
@@ -311,20 +331,10 @@ async def main():
         if selected_example_data:
             st.session_state.prompt = selected_example_data["prompt"]
 
-    # 1. Text area for prompt
+     # 1. Text area for prompt
     prompt = st.text_area("יש לכתוב פרומפט ליצירת תמונה...", value=st.session_state.prompt, key='prompt_input', help="יצירת תמונות")
 
-    # 2. Selectbox for style
-    image_styles = load_image_styles()
-    style_options = [style['name'] for style in image_styles]
-    selected_style = st.selectbox(
-        "בחרו סגנון תמונה 🎨",
-        options=style_options,
-        index=0,  # Set default to the first style (which should be "סגנון חופשי")
-        key='style_input'
-    )
-
-    # 3. Multiselect for models
+    # 2. Multiselect for models
     total_models = len(models)
     new_models = sum(1 for model in models if model['title'].startswith('🆕'))
     model_options = [model['title'] for model in models]
@@ -336,40 +346,42 @@ async def main():
         default=[default_model] if default_model in model_options else []
     )
 
+    selected_models = [model for model in models if model['title'] in selected_model_titles]
+    
+    # Get compatible styles based on selected models
+    compatible_styles = get_compatible_styles(selected_models, styles)
+
+    # 3. Selectbox for style
+    style_options = [style['name'] for style in compatible_styles]
+    
+    if not style_options:
+        st.warning("אין סגנונות זמינים למודלים שנבחרו. אנא בחר מודלים אחרים או פנה למנהל המערכת.")
+    else:
+        selected_style_name = st.selectbox(
+            "בחרו סגנון תמונה 🎨",
+            options=style_options,
+            index=0,
+            key='style_input'
+        )
+        selected_style = next((style for style in compatible_styles if style['name'] == selected_style_name), None)
+
     # Generate button
     if st.button('Generate', use_container_width=True):
-        if prompt and selected_model_titles:
+        if prompt and selected_models and selected_style:
             st.markdown(prompt)
-            selected_models = [model for model in models if model['title'] in selected_model_titles]
-
-            # Process selected style
-            selected_style_prefix = next(style['prompt_prefix'] for style in image_styles if style['name'] == selected_style)
-            
-            # Combine style prefix with the user's prompt
-            if selected_style != "סגנון חופשי" and selected_style_prefix:
-                full_prompt = f"{selected_style_prefix} {prompt}"
-            else:
-                full_prompt = prompt
 
             progress_bar = st.progress(0)
             status_text = st.empty()
 
-            # Create a placeholder for the spinner
             with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
-                html_content = generate_html(full_prompt, selected_models, progress_bar, status_text)
-
-                # Provide a download link for the HTML content
-                bio = BytesIO(html_content.encode('utf-8'))
-                
+                html_content = generate_html(prompt, selected_style, selected_models, progress_bar, status_text)
+                bio = BytesIO(html_content.encode('utf-8'))                
                 download_link = get_binary_file_downloader_html(bio, 'comparison_results.html')
                 st.markdown(download_link, unsafe_allow_html=True)
-
-                # Display the HTML content directly in Streamlit
                 st.components.v1.html(html_content, height=600, scrolling=True)
 
-                # Send message to Telegram
                 try:
-                    await send_telegram_message_and_file(full_prompt, html_content)
+                    await send_telegram_message_and_file(prompt, BytesIO(html_content.encode('utf-8')))
                 except Exception as e:
                     print(f"Failed to send to Telegram: {str(e)}")
 

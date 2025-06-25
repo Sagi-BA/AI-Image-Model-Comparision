@@ -1,5 +1,6 @@
 *.code-workspace
 .env
+.venv
 .output
 # Ignore all __pycache__ directories
 **/__pycache__/

@@ -142,11 +142,11 @@ def generate_media(prompt, model):
     print(f"Image generation for {model['generation_app']} is not implemented")
     return image_url
 
-def generate_html(prompt, selected_models, progress_bar, status_text):
+def generate_html(orginal_prompt,full_prompt, selected_models, progress_bar, status_text):
     template = Template(html_template)    
-    english_prompt = translate_to_hebrew(prompt)
+    english_prompt = translate_to_english(full_prompt)
 
-    print(english_prompt)
+    print(f"Original Prompt: {orginal_prompt}")
 
     total_models = len(selected_models)
     for i, model in enumerate(selected_models, 1):
@@ -159,7 +159,7 @@ def generate_html(prompt, selected_models, progress_bar, status_text):
             print(f"Failed to generate media for {model['title']}")
         progress_bar.progress(i / total_models)
 
-    html_content = template.render(prompt=prompt, models=selected_models)
+    html_content = template.render(prompt=orginal_prompt, models=selected_models)
     
     return html_content
 
@@ -179,7 +179,7 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
 def get_translator():
     return GoogleTranslator(source='auto', target='en')
 
-def translate_to_hebrew(text):
+def translate_to_english(text):
     try:
         translator = get_translator()
         return translator.translate(text)
@@ -354,7 +354,7 @@ async def main():
 
             # Create a placeholder for the spinner
             with st.spinner("מייצר תמונות נא להמתין בסבלנות ..."):
-                html_content = generate_html(full_prompt, selected_models, progress_bar, status_text)
+                html_content = generate_html(prompt, full_prompt, selected_models, progress_bar, status_text)
 
                 # Provide a download link for the HTML content
                 bio = BytesIO(html_content.encode('utf-8'))

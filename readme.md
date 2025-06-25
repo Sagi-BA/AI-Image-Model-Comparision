@@ -1,12 +1,10 @@
-![Alt text](https://i.imgur.com/RhRQLLN.jpg)
+![Alt text](https://i.imgur.com/haRDiHy.jpeg)
 
-# 👀 Convert Photos to PDF file
+# 🎨 AI Image Generator
 
-This application allows users to upload images and convert them to a PDF file.
-Images can be added, removed and rearranged.
-After clicking 'Create PDF', the file will be created and downloaded automatically.
+This application allows users to create images using artificial intelligence by selecting different models and image styles.
 
-> You can try the app [here](https://sagi-images-to-pdf.streamlit.app/)
+> You can try the app [here](https://sagi-ai-image-model-comparision.streamlit.app/)
 
 [![Linktree](https://img.shields.io/badge/linktree-white?style=for-the-badge&logo=linktree&logoColor=43E55E)](https://linktr.ee/sagib?lt_utm_source=lt_share_link#373198503) |
 [![Facebook](https://img.shields.io/badge/facebook-white?style=for-the-badge&logo=facebook&logoColor=0866FF)](https://www.facebook.com/sagi.baron) |
@@ -23,25 +21,42 @@ After clicking 'Create PDF', the file will be created and downloaded automatical
 
 [![Watch the video](https://img.youtube.com/vi/xj8COkST--8/maxresdefault.jpg)](https://youtu.be/xj8COkST--8)
 
-## Install dependencies
+## Key Features
 
-To use this application, you need to install the necessary dependencies.  
+- Create images using various AI models
+- Choose from different image styles
+- Option to input custom prompts
+- Compare results from different models
+- Support for both English and Hebrew languages
+
+## Installing Dependencies
+
+To use this application, you need to install the required dependencies.
 Run the following command to install them:
 
 ```sh
- pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
 
-Upload Images: Click the 'Upload' button to select images from your device.
-Manage Images: Use the add (➕), remove (➖), and reorder (🔄) options to organize your images.
-Create PDF: Once the images are arranged as desired, click 'Create PDF' (📥).  
-The application will generate the PDF and automatically download it to your device.
+1. Enter a prompt: Write a description of the image you want to create.
+2. Select models: Choose the AI models you want to use to generate the image.
+3. Choose a style: Select the desired image style (available styles depend on the selected models).
+4. Generate images: Click the 'Generate' button to create the images.
+5. Compare results: View the images created by different models and compare them.
 
-Make sure you have [Streamlit installed](https://docs.streamlit.io/) CLI before running the application.  
+Make sure you have [Streamlit installed](https://docs.streamlit.io/) before running the application.
 Run the following command in your terminal:
 
 ```
 streamlit run main.py
 ```
+
+## Additional Notes
+
+- The application supports several different AI models for image creation, including Flux, Stable Diffusion, and more.
+- You can use prompts in English or Hebrew.
+- Results may vary between different models, allowing for interesting comparisons of their capabilities.
+
+We welcome feedback and ideas for improving the application!

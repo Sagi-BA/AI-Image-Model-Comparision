@@ -1,48 +1,84 @@
 {
   "styles": [
     {
-      "name": "סגנון חופשי",
-      "prompt_prefix": ""
+      "name": "חופשי",
+      "prompt_prefix": "",
+      "negative_prompt": "low quality, worst quality, blurry, distorted"
     },
     {
-      "name": "ריאליסטי",
-      "prompt_prefix": "תמונה ריאליסטית של"
+      "name": "פוטוריאליסטי",
+      "prompt_prefix": "Photorealistic image of",
+      "negative_prompt": "cartoon, anime, illustration, painting, drawing, sketch, unrealistic"
     },
     {
-      "name": "מצויר",
-      "prompt_prefix": "איור מצויר של"
+      "name": "דיגיטל ארט",
+      "prompt_prefix": "Digital art of",
+      "negative_prompt": "traditional art techniques, photography, realism"
     },
     {
-      "name": "צבעי מים",
-      "prompt_prefix": "ציור בצבעי מים של"
+      "name": "אנימה",
+      "prompt_prefix": "Anime style artwork of",
+      "negative_prompt": "photorealistic, western art style, 3D render"
     },
     {
-      "name": "סקיצה",
-      "prompt_prefix": "סקיצה בעיפרון של"
+      "name": "דיסני",
+      "prompt_prefix": "Disney style illustration of",
+      "negative_prompt": "realistic, dark themes, anime, mature content"
     },
     {
-      "name": "פופ ארט",
-      "prompt_prefix": "תמונה בסגנון פופ ארט של"
+      "name": "פיקסאר",
+      "prompt_prefix": "Pixar style 3D rendering of",
+      "negative_prompt": "2D, hand-drawn, realistic, low quality"
     },
     {
-      "name": "אבסטרקטי",
-      "prompt_prefix": "יצירה אבסטרקטית המייצגת"
+      "name": "סייברפאנק",
+      "prompt_prefix": "Cyberpunk themed image of",
+      "negative_prompt": "natural, historical, pastoral, low-tech"
     },
     {
-      "name": "אימפרסיוניסטי",
-      "prompt_prefix": "ציור אימפרסיוניסטי של"
+      "name": "פנטזיה",
+      "prompt_prefix": "Fantasy artwork of",
+      "negative_prompt": "modern, everyday scenes, realism"
     },
     {
-      "name": "פיקסל ארט",
-      "prompt_prefix": "תמונת פיקסל ארט של"
-    },
-    {
-      "name": "סוריאליסטי",
-      "prompt_prefix": "תמונה סוריאליסטית המתארת"
+      "name": "רטרו",
+      "prompt_prefix": "Retro style illustration of",
+      "negative_prompt": "modern, futuristic, contemporary"
     },
     {
       "name": "מינימליסטי",
-      "prompt_prefix": "עיצוב מינימליסטי של"
+      "prompt_prefix": "Minimalist design of",
+      "negative_prompt": "complex, detailed, ornate, cluttered, baroque"
+    },
+    {
+      "name": "קומיקס",
+      "prompt_prefix": "Comic book style art of",
+      "negative_prompt": "realistic, photographic, 3D render"
+    },
+    {
+      "name": "אימפרסיוניסטי",
+      "prompt_prefix": "Impressionist painting style of",
+      "negative_prompt": "sharp details, photorealistic, digital art"
+    },
+    {
+      "name": "סטימפאנק",
+      "prompt_prefix": "Steampunk themed image of",
+      "negative_prompt": "modern technology, digital devices, futuristic electronics"
+    },
+    {
+      "name": "וופורוויב",
+      "prompt_prefix": "Vaporwave aesthetic image of",
+      "negative_prompt": "natural colors, historical accuracy, realism"
+    },
+    {
+      "name": "פופ ארט",
+      "prompt_prefix": "Pop art style image of",
+      "negative_prompt": "subtle colors, classical art, realism"
+    },
+    {
+      "name": "גותי",
+      "prompt_prefix": "Gothic style depiction of",
+      "negative_prompt": "bright colors, cheerful themes, modern aesthetics"
     }
   ]
 }
