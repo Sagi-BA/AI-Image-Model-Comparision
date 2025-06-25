@@ -15,7 +15,7 @@ from PIL import Image
 
 # Initialize components
 from utils.init import initialize
-from utils.counter import initialize_user_count, increment_user_count, get_user_count
+from utils.counter import increment_user_count, get_user_count
 from utils.TelegramSender import TelegramSender
 
 from utils.text_to_image.pollinations_generator import PollinationsGenerator
@@ -387,5 +387,4 @@ if __name__ == "__main__":
     if 'counted' not in st.session_state:
         st.session_state.counted = True
         increment_user_count()
-    initialize_user_count()
     asyncio.run(main())
