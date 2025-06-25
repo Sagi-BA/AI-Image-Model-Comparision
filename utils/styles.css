@@ -52,6 +52,13 @@ p {
   text-align: center;
   margin-top: 1px;
 }
+
+.last-datetime-use {
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 1px;
+  font-size: 8px;
+}
 /* Ensure button text is visible */
 .stButton > button {
   width: 100%;

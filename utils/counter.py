@@ -1,42 +1,31 @@
 import os
-import json
 import streamlit as st
+from dotenv import load_dotenv
 
-# File to store user count
-DATA_FOLDER = 'data'
-USER_COUNT_FILE = os.path.join(DATA_FOLDER, 'user_count.json')
+# Load environment variables from .env file
+load_dotenv()
 
-def initialize_user_count():
-    os.makedirs(DATA_FOLDER, exist_ok=True)
-    if not os.path.exists(USER_COUNT_FILE):
-        with open(USER_COUNT_FILE, 'w') as f:
-            json.dump({"count": 0}, f)
-
+# Retrieve the COUNTER value from the .env file
 def get_user_count(formatted=False):
+    count = os.getenv('COUNTER', '0')
     try:
-        with open(USER_COUNT_FILE, 'r') as f:
-            data = json.load(f)
-        count = data.get("count", 0)
-        if formatted:            
-            return format_count(count)
-        return count
-    except (json.JSONDecodeError, FileNotFoundError):
-        return 0
+        count = int(count)
+    except ValueError:
+        count = 0
+    
+    if formatted:
+        return format_count(count)
+    
+    return count
 
 def increment_user_count():
-    count = get_user_count()
-    count += 1    
-    with open(USER_COUNT_FILE, 'w') as f:
-        json.dump({"count": count}, f)
+    count = get_user_count() + 1
+    os.environ['COUNTER'] = str(count)  # This will only update the current session.
     return count
 
 def decrement_user_count():
-    print("Decrementing user count")
-    
-    count = get_user_count()
-    count = max(0, count - 1)  # Ensure count doesn't go below 0
-    with open(USER_COUNT_FILE, 'w') as f:
-        json.dump({"count": count}, f)
+    count = max(0, get_user_count() - 1)
+    os.environ['COUNTER'] = str(count)  # This will only update the current session.
     return count
 
 def format_count(count):
@@ -44,3 +33,14 @@ def format_count(count):
     if count >= 1000:
         return f"{count:,}"
     return f"{count:,}"
+
+# Example usage
+if __name__ == "__main__":
+    current_count = get_user_count()
+    st.write(f"Current user count: {format_count(current_count)}")
+    
+    incremented_count = increment_user_count()
+    st.write(f"User count after increment: {format_count(incremented_count)}")
+    
+    decremented_count = decrement_user_count()
+    st.write(f"User count after decrement: {format_count(decremented_count)}")

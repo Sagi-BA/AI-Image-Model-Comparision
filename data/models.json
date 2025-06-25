@@ -14,17 +14,32 @@
       "name": "turbo",
       "media_type": "image"
     },
+    
     {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
-      "title": "🆕⚡ Flux Realism",
+      "title": "🆕⚡ Flux Cablyai",
+      "name": "flux-cablyai",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "🆕⚡ Flux Pro",
+      "name": "flux-pro",
+      "media_type": "image"
+    },
+    {
+      "generation_app": "pollinations",
+      "link": "https://pollinations.ai/",
+      "title": "⚡ Flux Realism",
       "name": "flux-realism",
       "media_type": "image"
     },
     {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
-      "title": "🆕⚡ Flux Anime",
+      "title": "⚡ Flux Anime",
       "name": "flux-anime",
       "media_type": "image"
     },
@@ -32,7 +47,7 @@
     {
       "generation_app": "pollinations",
       "link": "https://pollinations.ai/",
-      "title": "🆕⚡ Flux 3D",
+      "title": "⚡ Flux 3D",
       "name": "flux-3d",
       "media_type": "image"
     },
@@ -144,77 +159,77 @@
     {
       "generation_app": "markury/surrealidescent",
       "link": "https://huggingface.co/markury/surrealidescent",
-      "title": "🆕 Flux surrealidescent",
+      "title": "Flux surrealidescent",
       "name": "Flux surrealidescent",
       "media_type": "image"
     },
     {
       "generation_app": "bingbangboom/flux_colorscape",
       "link": "https://huggingface.co/bingbangboom/flux_colorscape",
-      "title": "🆕 Flux colorscape",
+      "title": "Flux colorscape",
       "name": "Flux colorscape",
       "media_type": "image"
     },
     {
       "generation_app": "davisbro/designer-architecture",
       "link": "https://huggingface.co/davisbro/designer-architecture",
-      "title": "🆕 Designer Architecture",
+      "title": "Designer Architecture",
       "name": "Designer Architecture",
       "media_type": "image"
     },
     {
       "generation_app": "shaocr/jaznaka-flux-lora",
       "link": "https://huggingface.co/shaocr/jaznaka-flux-lora",
-      "title": "🆕 Flux DreamBooth LoRA",
+      "title": "Flux DreamBooth LoRA",
       "name": "Flux DreamBooth LoRA",
       "media_type": "image"
     },
     {
       "generation_app": "Fihade/Kodak-Portra400-xl-LoRA",
       "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
-      "title": "🆕 Kodak porta400 film",
+      "title": "Kodak porta400 film",
       "name": "Kodak porta400 film",
       "media_type": "image"
     },
     {
       "generation_app": "Indhumathy/cat_style",
       "link": "https://huggingface.co/Fihade/Kodak-Portra400-xl-LoRA",
-      "title": "🆕 LoRA cat style",
+      "title": "LoRA cat style",
       "name": "LoRA cat style",
       "media_type": "image"
     },
     {
       "generation_app": "rokilla/PPRX",
       "link": "https://huggingface.co/rokilla/PPRX",
-      "title": "🆕 FLUX.1-dev Pprx",
+      "title": "FLUX.1-dev Pprx",
       "name": "FLUX.1-dev Pprx",
       "media_type": "image"
     },
     {
       "generation_app": "Ethanli2024/uushirt",
       "link": "https://huggingface.co/Ethanli2024/uushirt",
-      "title": "🆕 FLUX.1-dev Uushirt",
+      "title": "FLUX.1-dev Uushirt",
       "name": "FLUX.1-dev Uushirt",
       "media_type": "image"
     },
     {
       "generation_app": "prostt/kitchenone",
       "link": "https://huggingface.co/prostt/kitchenone",
-      "title": "🆕 FLUX.1-dev Kitchenone",
+      "title": "FLUX.1-dev Kitchenone",
       "name": "FLUX.1-dev Kitchenone",
       "media_type": "image"
     },
     {
       "generation_app": "markury/airplaneears-flux",
       "link": "https://huggingface.co/markury/airplaneears-flux",
-      "title": "🆕 FLUX.1-dev airplane ears",
+      "title": "FLUX.1-dev airplane ears",
       "name": "FLUX.1-dev airplane ears",
       "media_type": "image"
     },
     {
       "generation_app": "markury/airplaneears-flux",
       "link": "https://huggingface.co/markury/airplaneears-flux",
-      "title": "🆕 FLUX.1-dev Boreal",
+      "title": "FLUX.1-dev Boreal",
       "name": "FLUX.1-dev Boreal",
       "media_type": "image"
     },

@@ -1,84 +1,92 @@
 {
   "styles": [
     {
-      "name": "חופשי",
-      "prompt_prefix": "",
-      "negative_prompt": "low quality, worst quality, blurry, distorted"
+      "name": "סגנון חופשי",
+      "prompt_prefix": ""
     },
     {
       "name": "פוטוריאליסטי",
-      "prompt_prefix": "Photorealistic image of",
-      "negative_prompt": "cartoon, anime, illustration, painting, drawing, sketch, unrealistic"
+      "prompt_prefix": "photorealistic image of"
     },
     {
       "name": "דיגיטל ארט",
-      "prompt_prefix": "Digital art of",
-      "negative_prompt": "traditional art techniques, photography, realism"
+      "prompt_prefix": "digital art of"
     },
     {
       "name": "אנימה",
-      "prompt_prefix": "Anime style artwork of",
-      "negative_prompt": "photorealistic, western art style, 3D render"
+      "prompt_prefix": "anime style artwork of"
     },
     {
       "name": "דיסני",
-      "prompt_prefix": "Disney style illustration of",
-      "negative_prompt": "realistic, dark themes, anime, mature content"
+      "prompt_prefix": "Disney style illustration of"
     },
     {
       "name": "פיקסאר",
-      "prompt_prefix": "Pixar style 3D rendering of",
-      "negative_prompt": "2D, hand-drawn, realistic, low quality"
+      "prompt_prefix": "Pixar style 3D rendering of"
     },
     {
       "name": "סייברפאנק",
-      "prompt_prefix": "Cyberpunk themed image of",
-      "negative_prompt": "natural, historical, pastoral, low-tech"
+      "prompt_prefix": "cyberpunk themed image of"
     },
     {
       "name": "פנטזיה",
-      "prompt_prefix": "Fantasy artwork of",
-      "negative_prompt": "modern, everyday scenes, realism"
+      "prompt_prefix": "fantasy artwork of"
     },
     {
       "name": "רטרו",
-      "prompt_prefix": "Retro style illustration of",
-      "negative_prompt": "modern, futuristic, contemporary"
+      "prompt_prefix": "retro style illustration of"
     },
     {
       "name": "מינימליסטי",
-      "prompt_prefix": "Minimalist design of",
-      "negative_prompt": "complex, detailed, ornate, cluttered, baroque"
+      "prompt_prefix": "minimalist design of"
     },
     {
       "name": "קומיקס",
-      "prompt_prefix": "Comic book style art of",
-      "negative_prompt": "realistic, photographic, 3D render"
+      "prompt_prefix": "comic book style art of"
     },
     {
       "name": "אימפרסיוניסטי",
-      "prompt_prefix": "Impressionist painting style of",
-      "negative_prompt": "sharp details, photorealistic, digital art"
+      "prompt_prefix": "impressionist painting style of"
     },
     {
       "name": "סטימפאנק",
-      "prompt_prefix": "Steampunk themed image of",
-      "negative_prompt": "modern technology, digital devices, futuristic electronics"
+      "prompt_prefix": "steampunk themed image of"
     },
     {
       "name": "וופורוויב",
-      "prompt_prefix": "Vaporwave aesthetic image of",
-      "negative_prompt": "natural colors, historical accuracy, realism"
+      "prompt_prefix": "vaporwave aesthetic image of"
     },
     {
       "name": "פופ ארט",
-      "prompt_prefix": "Pop art style image of",
-      "negative_prompt": "subtle colors, classical art, realism"
+      "prompt_prefix": "pop art style image of"
     },
     {
       "name": "גותי",
-      "prompt_prefix": "Gothic style depiction of",
-      "negative_prompt": "bright colors, cheerful themes, modern aesthetics"
+      "prompt_prefix": "gothic style depiction of"
+    },
+    {
+      "name": "מצויר",
+      "prompt_prefix": "hand drawn illustration of"
+    },
+    {
+      "name": "צבעי מים",
+      "prompt_prefix": "watercolor painting of"
+    },
+    {
+      "name": "סקיצה",
+      "prompt_prefix": "pencil sketch of"
+    },
+    {
+      "name": "אבסטרקטי",
+      "prompt_prefix": "abstract artwork representing"
+    },
+    {
+      "name": "פיקסל ארט",
+      "prompt_prefix": "pixel art of"
+    },
+    {
+      "name": "סוריאליסטי",
+      "prompt_prefix": "surrealist image depicting"
     }
   ]
 }
