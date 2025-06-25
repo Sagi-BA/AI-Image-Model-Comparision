@@ -5,7 +5,13 @@ import sys, os
 from urllib.parse import quote
 import base64
 import streamlit as st
-import speech_recognition as sr
+try:
+    import speech_recognition as sr
+    SPEECH_RECOGNITION_AVAILABLE = True
+except ImportError:
+    sr = None
+    SPEECH_RECOGNITION_AVAILABLE = False
+    print("speech_recognition not available - audio transcription disabled")
 from dotenv import load_dotenv
 
 # Add the parent directory of 'text_to_image' (which is 'utils') to sys.path
@@ -100,6 +106,10 @@ EXAMPLES = [
 ]
 
 def transcribe_audio():
+    if not SPEECH_RECOGNITION_AVAILABLE:
+        st.error("אודיו הקלטה לא זמינה - המודול speech_recognition לא מותקן")
+        return None
+    
     r = sr.Recognizer()
     with sr.Microphone() as source:
         st.info("🎤 הקלטה מתחילה...")
