@@ -215,7 +215,7 @@ def main():
             image_url = generate_image(user_input)
             progress_bar.progress(100, text="✅ התמונה מוכנה!")
             if image_url:
-                st.image(image_url, caption="הסל שלך לביכורים", use_column_width=True, output_format="auto")
+                st.image(image_url, caption="הסל שלך לביכורים", use_container_width=True, output_format="auto")
 
             # כפתור שיתוף
             share_text = f"הנה הסל שלי לביכורים! {hebrew_text}"

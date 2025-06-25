@@ -264,7 +264,7 @@ def add_examples_images():
                 try:
                     image = Image.open(model['image_path'])
                     st.markdown(f'<div class="model-container">', unsafe_allow_html=True)
-                    st.image(image, None, use_column_width=True)
+                    st.image(image, None, use_container_width=True)
                     st.markdown(f'<div class="model-name">{model["name"]}</div>', unsafe_allow_html=True)
                     # st.markdown(f'<div class="model-name">{model['name']}</div>', unsafe_allow_html=True)
                     st.markdown('</div>', unsafe_allow_html=True)
@@ -293,11 +293,12 @@ async def main():
     # Create a selectbox for examples with a label
     example_titles = [""] + [example["title"] for example in examples]
     selected_example = st.selectbox(
-        label="",  # Empty string for label
+        label="פרומפטים לדוגמא",  # Proper label for accessibility
         options=example_titles,
         index=None,  # Set default to empty option
         key="example_selector",
         placeholder="פרומפטים לדוגמא 👈",
+        label_visibility="collapsed"  # Hide the label visually
     )
     # Initialize session state for prompt if it doesn't exist
     if 'prompt' not in st.session_state:
